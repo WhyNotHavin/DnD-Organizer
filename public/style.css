@@ -1,0 +1,151 @@
+body {
+  background-color: rgb(236, 235, 235);
+}
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 4rem;
+}
+.spell-container {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  height: 400px;
+  border: solid black;
+  font-weight: normal;
+  font-size: 1rem;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  margin: 1rem;
+}
+
+.details-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+.spell-detail {
+  margin-right: 1rem;
+}
+.spell-header {
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: black;
+}
+.spell-school {
+  font-weight: normal;
+  font-size: 1rem;
+}
+.main-header {
+  font-size: 3rem;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+#total-spells {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.description {
+  overflow-y: scroll;
+  background-color: rgb(179, 179, 179);
+  margin-top: 1rem;
+}
+.filter-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.create-new-spell {
+  margin-right: 1rem;
+  padding: 1rem;
+  background-color: #333333;
+  font-size: 1.5rem;
+  color: #c0c0c0;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 2rem;
+}
+
+.p {
+  margin: 0.5rem;
+}
+/* Nav */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  align-items: center;
+  background-color: #333333;
+  color: #c0c0c0;
+  display: flex;
+  height: 80px;
+  padding: 10px;
+  padding-left: 4rem;
+  padding-right: 2rem;
+}
+.nav {
+  text-decoration: none;
+  color: #c0c0c0;
+  font-weight: bold;
+  font-size: 2rem;
+  margin-right: 2rem;
+}
+/* Create spell or monster */
+.createSpellMonster-contianer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 24rem;
+  margin-right: 24rem;
+  margin-top: 2rem;
+  padding: 4rem;
+}
+.custom-spell-monster-container {
+  display: flex;
+  margin: 1rem;
+}
+.custom {
+  font-size: 2rem;
+  margin: 2rem;
+  padding: 2rem;
+  text-decoration: none;
+  border-radius: 3rem;
+  color: #c0c0c0;
+  background-color: #333333;
+}
+/* CopyPaste spell or monster */
+.copyPasteSpellMonster-contianer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  flex-direction: column;
+}
+
+.copy-button {
+  font-size: 2rem;
+  padding: 1rem;
+  text-decoration: none;
+  border-radius: 1rem;
+  color: #c0c0c0;
+  background-color: #333333;
+}
+.copy-selector {
+  font-size: 2rem;
+  padding: 1rem;
+  text-decoration: none;
+  border-radius: 1rem;
+  color: #c0c0c0;
+  background-color: #333333;
+}
+.copy-textarea {
+  margin: 1rem;
+  background-color: #333333;
+  color: #c0c0c0;
+}
