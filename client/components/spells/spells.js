@@ -1,15 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { putSpell, removeSpell } from "../../store/user";
 
 const Spells = (props) => {
   const spells = props.state.spells || [];
 
+  let userSpellList = [];
+  if (props.state.user.info) {
+    userSpellList = props.state.user.info.spellList;
+  }
+
   return (
     <div>
-      {" "}
       <div className="filter-container">
-        <div>FILTER PLACEHOLDER</div>
+        <div></div>
         <div id="total-spells">Current Total: {spells.length}</div>
         <Link
           className="create-new-spell"
@@ -64,6 +69,25 @@ const Spells = (props) => {
                   return <p key={ind}>{description}</p>;
                 })}
               </div>
+              {userSpellList.includes(spell) ? (
+                <div>
+                  <button
+                    onClick={() =>
+                      props.removeSpell(spell, props.state.user.uid)
+                    }
+                  >
+                    Remove from Spell Book
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button
+                    onClick={() => props.addSpell(spell, props.state.user.uid)}
+                  >
+                    Add to Spell Book
+                  </button>
+                </div>
+              )}
             </div>
           );
         })}
@@ -76,4 +100,9 @@ const mapStateToProps = (state) => ({
   state,
 });
 
-export default connect(mapStateToProps)(Spells);
+const mapDispatchToProps = (dispatch) => ({
+  addSpell: (spell, id) => dispatch(putSpell(spell, id)),
+  removeSpell: (spell, id) => dispatch(removeSpell(spell, id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Spells);

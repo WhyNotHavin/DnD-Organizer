@@ -29,8 +29,7 @@ export const fetchFirebaseData = () => {
 export const postFirebaseSpell = (newSpell, history) => {
   return async (dispatch) => {
     try {
-      const docRef = await addDoc(collection(firebaseDB, "spell"), newSpell);
-      console.log("Document : ", docRef);
+      await addDoc(collection(firebaseDB, "spell"), newSpell);
       history.push("/spells");
     } catch (e) {
       console.error("Error adding document: ", e);

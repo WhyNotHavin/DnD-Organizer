@@ -1,68 +1,55 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { postFirebaseSpell } from "../../store/spells";
 import { signIntoFirebase, signUpFirebase } from "../../store/user";
 
-class SignUp extends Component {
-  constructor() {
-    super();
-    this.state = {
-      username: "",
-      email: "",
-      password: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+function SignUp(props) {
+  const [form, setValues] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-  handleChange(evt) {
-    console.log(this.state);
-    this.setState({
+  const handleChange = (evt) => {
+    setValues({
+      ...form,
       [evt.target.name]: evt.target.value,
     });
-  }
-  handleSubmit(evt) {
+  };
+  const handleSubmit = (evt) => {
     evt.preventDefault();
-    this.props.signUp(
-      this.state.email,
-      this.state.password,
-      this.state.username
-    );
-  }
-  render() {
-    const { email, username, password } = this.state;
-    const { handleSubmit, handleChange } = this;
-    return (
-      <form onSubmit={handleSubmit}>
-        <label>User Name: </label>
-        <input
-          className="form-input-username"
-          name="username"
-          onChange={handleChange}
-          value={username}
-        />
-        <label>Email: </label>
-        <input
-          className="form-input-email"
-          name="email"
-          onChange={handleChange}
-          value={email}
-        />
-        <label>Password: </label>
-        <input
-          className="form-input-password"
-          name="password"
-          onChange={handleChange}
-          value={password}
-        />
-        <button className="form-submit" type="submit">
-          Sign Up!
-        </button>
-        <Link to="/login">Already have an account? Sign in here</Link>
-      </form>
-    );
-  }
+    props.signUp(form.email, form.password, form.username);
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>User Name: </label>
+      <input
+        className="form-input-username"
+        name="username"
+        onChange={handleChange}
+        value={form.username}
+      />
+      <label>Email: </label>
+      <input
+        className="form-input-email"
+        name="email"
+        onChange={handleChange}
+        value={form.email}
+      />
+      <label>Password: </label>
+      <input
+        className="form-input-password"
+        name="password"
+        onChange={handleChange}
+        value={form.password}
+      />
+      <button className="form-submit" type="submit">
+        Sign Up!
+      </button>
+      <Link to="/login">Already have an account? Sign in here</Link>
+    </form>
+  );
 }
 
 const mapDispatchToProps = (dispatch, { history }) => ({

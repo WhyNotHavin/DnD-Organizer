@@ -106,6 +106,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _spells_customSpell__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./spells/customSpell */ "./client/components/spells/customSpell.js");
 /* harmony import */ var _login_login__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./login/login */ "./client/components/login/login.js");
 /* harmony import */ var _login_signup__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./login/signup */ "./client/components/login/signup.js");
+/* harmony import */ var _spellBook_spellBook__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./spellBook/spellBook */ "./client/components/spellBook/spellBook.js");
+
 
 
 
@@ -134,7 +136,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       to: "/"
     }, "Monsters")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.user.displayName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       className: "nav",
-      to: "/spells"
+      to: "/my/spell-book"
     }, this.props.user.displayName) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       className: "nav",
       to: "/login"
@@ -146,6 +148,10 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       exact: true,
       path: "/spells",
       component: _spells_spells__WEBPACK_IMPORTED_MODULE_3__["default"]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      exact: true,
+      path: "/my/spell-book",
+      component: _spellBook_spellBook__WEBPACK_IMPORTED_MODULE_10__["default"]
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
       exact: true,
       path: "/spells/customSpell",
@@ -435,65 +441,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class Login extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
-  constructor() {
-    super();
-    this.state = {
-      username: "",
-      email: "",
-      password: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+function Login(props) {
+  const [form, setValues] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    username: "",
+    email: "",
+    password: ""
+  });
 
-  handleChange(evt) {
-    console.log(this.state);
-    this.setState({
+  const handleChange = evt => {
+    setValues({ ...form,
       [evt.target.name]: evt.target.value
     });
-  }
+  };
 
-  handleSubmit(evt) {
+  const handleSubmit = evt => {
     evt.preventDefault();
-    this.props.signIn(this.state.email, this.state.password, this.state.username);
-  }
+    props.signIn(form.email, form.password, form.username);
+  };
 
-  render() {
-    const {
-      email,
-      username,
-      password
-    } = this.state;
-    const {
-      handleSubmit,
-      handleChange
-    } = this;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-      onSubmit: handleSubmit
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "User Name: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-username",
-      name: "username",
-      onChange: handleChange,
-      value: username
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-email",
-      name: "email",
-      onChange: handleChange,
-      value: email
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-password",
-      name: "password",
-      onChange: handleChange,
-      value: password
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "form-submit",
-      type: "submit"
-    }, "Sign In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-      to: "/signup"
-    }, "Dont have an account? Sign up here!"));
-  }
-
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "User Name: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-username",
+    name: "username",
+    onChange: handleChange,
+    value: form.username
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-email",
+    name: "email",
+    onChange: handleChange,
+    value: form.email
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-password",
+    name: "password",
+    onChange: handleChange,
+    value: form.password
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "form-submit",
+    type: "submit"
+  }, "Sign In"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/signup"
+  }, "Dont have an account? Sign up here!"));
 }
 
 const mapDispatchToProps = (dispatch, {
@@ -527,65 +515,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class SignUp extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
-  constructor() {
-    super();
-    this.state = {
-      username: "",
-      email: "",
-      password: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+function SignUp(props) {
+  const [form, setValues] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    username: "",
+    email: "",
+    password: ""
+  });
 
-  handleChange(evt) {
-    console.log(this.state);
-    this.setState({
+  const handleChange = evt => {
+    setValues({ ...form,
       [evt.target.name]: evt.target.value
     });
-  }
+  };
 
-  handleSubmit(evt) {
+  const handleSubmit = evt => {
     evt.preventDefault();
-    this.props.signUp(this.state.email, this.state.password, this.state.username);
-  }
+    props.signUp(form.email, form.password, form.username);
+  };
 
-  render() {
-    const {
-      email,
-      username,
-      password
-    } = this.state;
-    const {
-      handleSubmit,
-      handleChange
-    } = this;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-      onSubmit: handleSubmit
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "User Name: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-username",
-      name: "username",
-      onChange: handleChange,
-      value: username
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-email",
-      name: "email",
-      onChange: handleChange,
-      value: email
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-password",
-      name: "password",
-      onChange: handleChange,
-      value: password
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "form-submit",
-      type: "submit"
-    }, "Sign Up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-      to: "/login"
-    }, "Already have an account? Sign in here"));
-  }
-
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "User Name: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-username",
+    name: "username",
+    onChange: handleChange,
+    value: form.username
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-email",
+    name: "email",
+    onChange: handleChange,
+    value: form.email
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-password",
+    name: "password",
+    onChange: handleChange,
+    value: form.password
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "form-submit",
+    type: "submit"
+  }, "Sign Up!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/login"
+  }, "Already have an account? Sign in here"));
 }
 
 const mapDispatchToProps = (dispatch, {
@@ -595,6 +565,104 @@ const mapDispatchToProps = (dispatch, {
 });
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(SignUp));
+
+/***/ }),
+
+/***/ "./client/components/spellBook/spellBook.js":
+/*!**************************************************!*\
+  !*** ./client/components/spellBook/spellBook.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/user */ "./client/store/user.js");
+
+
+
+
+
+const SpellBook = props => {
+  let userSpellList = [];
+
+  if (props.state.user.info) {
+    userSpellList = props.state.user.info.spellList;
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "FILTER PLACEHOLDER"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    className: "create-new-spell",
+    params: {
+      testvalue: "hello"
+    },
+    to: "/spells/create"
+  }, "Prepared Spells")), userSpellList[0] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "main"
+  }, userSpellList.map(spell => {
+    let descriptions = [];
+
+    if (spell.description) {
+      descriptions = spell.description;
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: spell.id,
+      className: "spell-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-header"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      to: `/spells/${spell.id}`,
+      className: "spell-header"
+    }, spell.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-school"
+    }, "(", spell.school, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "details-container"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, "Level: ", spell.level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, "Range: ", spell.range), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, "Duration: ", spell.duration), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, "Area of Effect: ", spell.aoe)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, "Class: ", spell.classs), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, "Components: ", spell.components), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, "Casting Time: ", spell.castingTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, "Saving Throw: ", spell.savingThrow))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "description"
+    }, descriptions.map((description, ind) => {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        key: ind
+      }, description);
+    })), userSpellList.includes(spell) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: () => props.removeSpell(spell, props.state.user.uid)
+    }, "Remove from Spell Book")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: () => props.addSpell(spell, props.state.user.uid)
+    }, "Add to Spell Book")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Prepare Spell")));
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You have no spells! Go learn some quick~!"));
+};
+
+const mapStateToProps = state => ({
+  state
+});
+
+const mapDispatchToProps = dispatch => ({
+  addSpell: (spell, id) => dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_3__["putSpell"])(spell, id)),
+  removeSpell: (spell, id) => dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_3__["removeSpell"])(spell, id))
+});
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(SpellBook));
 
 /***/ }),
 
@@ -616,141 +684,111 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const dummy = ["Affect Normal Fires", "VIEW SOURCE", "Affect Normal Fires (S V)", "Spell Level", "1", "Class", "Wizard", "School", "Alteration", "Details", "Range", "5 yds./level", "AOE", "10 foot-radius", "Casting Time", "1", "Duration", "2 rds./level", "Save", "None", "Requirements", "Somatic, Verbal,", "Source", "Players Hand Book page 170", "This spell enables the wizard to cause nonmagical fires - from as small as a torch or lantern to as large as the area of effect - to reduce in size and brightness to become mere coals or increase in light to become as bright as full daylight and increase the illumination to double the normal radius. Note that this does not affect either fuel consumption or damage caused by the fire.", "The caster can affect any or all fires in the spell's area. He can alter their intensities with a single gesture as long as the spell is in effect.", "The spell lasts until the caster cancels it, all fuel is burned, or the duration expires. The caster can also extinguish all flames in the area, which expends the spell immediately. The spell does not affect fire elementals or similar creatures."];
 
-class CreateSpell extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
-  constructor() {
-    super();
-    this.state = {
-      name: "",
-      level: 0,
-      classs: "",
-      school: "",
-      range: "",
-      components: "",
-      duration: "",
-      castingTime: "",
-      aoe: "",
-      savingThrow: "",
-      source: "",
-      description: [],
-      tempDescription: ""
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+function CreateSpell(props) {
+  const [form, setValues] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    name: "",
+    level: 0,
+    classs: "",
+    school: "",
+    range: "",
+    components: "",
+    duration: "",
+    castingTime: "",
+    aoe: "",
+    savingThrow: "",
+    source: "",
+    description: [],
+    tempDescription: ""
+  });
 
-  handleChange(evt) {
+  const handleChange = evt => {
     if (evt.target.name === "tempDescription") {
       let newDiscription = evt.target.value.split(/\n/g) || [];
-      this.setState({
+      setValues({ ...form,
         description: newDiscription
       });
+    } else {
+      setValues({ ...form,
+        [evt.target.name]: evt.target.value
+      });
     }
+  };
 
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
-  }
-
-  handleSubmit(evt) {
+  const handleSubmit = evt => {
     evt.preventDefault();
-    this.setState({
-      duration: "this worked"
-    });
-    this.props.addSpell(this.state);
-  }
+    props.addSpell(form);
+  };
 
-  render() {
-    const {
-      name,
-      level,
-      classs,
-      school,
-      range,
-      components,
-      duration,
-      castingTime,
-      aoe,
-      savingThrow,
-      source,
-      tempDescription
-    } = this.state;
-    const {
-      handleSubmit,
-      handleChange
-    } = this;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-      onSubmit: handleSubmit
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-name",
-      name: "name",
-      onChange: handleChange,
-      value: name
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "School: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-school",
-      name: "school",
-      onChange: handleChange,
-      value: school
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Level: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      type: "number",
-      className: "form-input-level",
-      name: "level",
-      onChange: handleChange,
-      value: level
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Range: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-range",
-      name: "range",
-      onChange: handleChange,
-      value: range
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Duration: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-duration",
-      name: "duration",
-      onChange: handleChange,
-      value: duration
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "AoE: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-aoe",
-      name: "aoe",
-      onChange: handleChange,
-      value: aoe
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Class: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-classs",
-      name: "classs",
-      onChange: handleChange,
-      value: classs
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Components: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-components",
-      name: "components",
-      onChange: handleChange,
-      value: components
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Casting Time: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-castingTime",
-      name: "castingTime",
-      onChange: handleChange,
-      value: castingTime
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Saving Throw: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-      className: "form-input-savingThrow",
-      name: "savingThrow",
-      onChange: handleChange,
-      value: savingThrow
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-      defaultValue: tempDescription,
-      onChange: handleChange,
-      placeholder: "tempDescription",
-      name: "tempDescription",
-      rows: "20",
-      cols: "80"
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "form-inner-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      className: "form-submit",
-      type: "submit"
-    }, "Submit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-      className: "form-cancel",
-      to: "/"
-    }, "Cancel"))));
-  }
-
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-name",
+    name: "name",
+    onChange: handleChange,
+    value: form.name
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "School: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-school",
+    name: "school",
+    onChange: handleChange,
+    value: form.school
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Level: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "number",
+    className: "form-input-level",
+    name: "level",
+    onChange: handleChange,
+    value: form.level
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Range: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-range",
+    name: "range",
+    onChange: handleChange,
+    value: form.range
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Duration: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-duration",
+    name: "duration",
+    onChange: handleChange,
+    value: form.duration
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "AoE: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-aoe",
+    name: "aoe",
+    onChange: handleChange,
+    value: form.aoe
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Class: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-classs",
+    name: "classs",
+    onChange: handleChange,
+    value: form.classs
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Components: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-components",
+    name: "components",
+    onChange: handleChange,
+    value: form.components
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Casting Time: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-castingTime",
+    name: "castingTime",
+    onChange: handleChange,
+    value: form.castingTime
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Saving Throw: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-savingThrow",
+    name: "savingThrow",
+    onChange: handleChange,
+    value: form.savingThrow
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    defaultValue: form.tempDescription,
+    onChange: handleChange,
+    placeholder: "tempDescription",
+    name: "tempDescription",
+    rows: "20",
+    cols: "80"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-inner-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "form-submit",
+    type: "submit"
+  }, "Submit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    className: "form-cancel",
+    to: "/"
+  }, "Cancel"))));
 }
 
 const mapDispatchToProps = (dispatch, {
@@ -776,15 +814,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _store_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/user */ "./client/store/user.js");
+
 
 
 
 
 const Spells = props => {
   const spells = props.state.spells || [];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  let userSpellList = [];
+
+  if (props.state.user.info) {
+    userSpellList = props.state.user.info.spellList;
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "FILTER PLACEHOLDER"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "total-spells"
   }, "Current Total: ", spells.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     className: "create-new-spell",
@@ -835,7 +881,11 @@ const Spells = props => {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         key: ind
       }, description);
-    })));
+    })), userSpellList.includes(spell) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: () => props.removeSpell(spell, props.state.user.uid)
+    }, "Remove from Spell Book")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: () => props.addSpell(spell, props.state.user.uid)
+    }, "Add to Spell Book")));
   })));
 };
 
@@ -843,7 +893,12 @@ const mapStateToProps = state => ({
   state
 });
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(Spells));
+const mapDispatchToProps = dispatch => ({
+  addSpell: (spell, id) => dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_3__["putSpell"])(spell, id)),
+  removeSpell: (spell, id) => dispatch(Object(_store_user__WEBPACK_IMPORTED_MODULE_3__["removeSpell"])(spell, id))
+});
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Spells));
 
 /***/ }),
 
@@ -951,8 +1006,7 @@ const fetchFirebaseData = () => {
 const postFirebaseSpell = (newSpell, history) => {
   return async dispatch => {
     try {
-      const docRef = await Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["addDoc"])(Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["collection"])(_server_db_index__WEBPACK_IMPORTED_MODULE_1___default.a, "spell"), newSpell);
-      console.log("Document : ", docRef);
+      await Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["addDoc"])(Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["collection"])(_server_db_index__WEBPACK_IMPORTED_MODULE_1___default.a, "spell"), newSpell);
       history.push("/spells");
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -979,32 +1033,83 @@ const reducer = (state = [], action) => {
 /*!******************************!*\
   !*** ./client/store/user.js ***!
   \******************************/
-/*! exports provided: setUser, signIntoFirebase, signUpFirebase, userReducer, default */
+/*! exports provided: setSpell, deleteSpell, setUser, putSpell, removeSpell, signIntoFirebase, signUpFirebase, userReducer, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSpell", function() { return setSpell; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSpell", function() { return deleteSpell; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUser", function() { return setUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "putSpell", function() { return putSpell; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeSpell", function() { return removeSpell; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signIntoFirebase", function() { return signIntoFirebase; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signUpFirebase", function() { return signUpFirebase; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userReducer", function() { return userReducer; });
-/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/index.esm.js");
-/* harmony import */ var _server_db_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../server/db/index */ "./server/db/index.js");
-/* harmony import */ var _server_db_index__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_server_db_index__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _server_db_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../server/db/index */ "./server/db/index.js");
+/* harmony import */ var _server_db_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_server_db_index__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/firestore */ "./node_modules/firebase/firestore/dist/index.esm.js");
+/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/index.esm.js");
+
 
 
 const SET_USER = "SET_USER";
+const SET_USER_SPELL = "SET_USER_SPELL";
+const DELETE_USER_SPELL = "DELETE_USER_SPELL";
+const setSpell = spell => {
+  return {
+    type: SET_USER_SPELL,
+    spell
+  };
+};
+const deleteSpell = spell => {
+  return {
+    type: DELETE_USER_SPELL,
+    spell
+  };
+};
 const setUser = user => {
   return {
     type: SET_USER,
     user
   };
 };
+const putSpell = (spell, id) => {
+  return async dispatch => {
+    try {
+      const ref = Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["doc"])(_server_db_index__WEBPACK_IMPORTED_MODULE_0___default.a, "users", id);
+      console.log(ref);
+      await Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["updateDoc"])(ref, {
+        spellList: Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["arrayUnion"])(spell)
+      });
+      dispatch(setSpell(spell));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+const removeSpell = (spell, id) => {
+  return async dispatch => {
+    try {
+      const ref = Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["doc"])(_server_db_index__WEBPACK_IMPORTED_MODULE_0___default.a, "users", id);
+      await Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["updateDoc"])(ref, {
+        spellList: Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["arrayRemove"])(spell)
+      });
+      dispatch(deleteSpell(spell));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
 const signIntoFirebase = (email, password, username, history) => {
   return async dispatch => {
     try {
-      console.log("this ran");
-      const userCred = await Object(firebase_auth__WEBPACK_IMPORTED_MODULE_0__["signInWithEmailAndPassword"])(Object(firebase_auth__WEBPACK_IMPORTED_MODULE_0__["getAuth"])(), email, password);
+      const userCred = await Object(firebase_auth__WEBPACK_IMPORTED_MODULE_2__["signInWithEmailAndPassword"])(Object(firebase_auth__WEBPACK_IMPORTED_MODULE_2__["getAuth"])(), email, password);
+      const findInfo = Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["query"])(Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["collection"])(_server_db_index__WEBPACK_IMPORTED_MODULE_0___default.a, "users"), Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["where"])("uid", "==", userCred.user.uid));
+      const querySnapshot = await Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["getDocs"])(findInfo);
+      querySnapshot.forEach(doc => {
+        userCred.user.info = doc.data();
+      });
       history.push("/spells");
       dispatch(setUser(userCred.user));
     } catch (error) {
@@ -1016,11 +1121,18 @@ const signIntoFirebase = (email, password, username, history) => {
 const signUpFirebase = (email, password, username, history) => {
   return async dispatch => {
     try {
-      let auth = Object(firebase_auth__WEBPACK_IMPORTED_MODULE_0__["getAuth"])();
-      const userCred = await Object(firebase_auth__WEBPACK_IMPORTED_MODULE_0__["createUserWithEmailAndPassword"])(auth, email, password);
-      await Object(firebase_auth__WEBPACK_IMPORTED_MODULE_0__["updateProfile"])(auth.currentUser, {
+      let auth = Object(firebase_auth__WEBPACK_IMPORTED_MODULE_2__["getAuth"])();
+      const userCred = await Object(firebase_auth__WEBPACK_IMPORTED_MODULE_2__["createUserWithEmailAndPassword"])(auth, email, password);
+      await Object(firebase_auth__WEBPACK_IMPORTED_MODULE_2__["updateProfile"])(auth.currentUser, {
         displayName: username
       });
+      const info = {
+        uid: userCred.user.uid,
+        spellList: [],
+        preparedSpells: []
+      };
+      await Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["setDoc"])(Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__["doc"])(_server_db_index__WEBPACK_IMPORTED_MODULE_0___default.a, "users", `${userCred.user.uid}`), info);
+      userCred.user.info = info;
       history.push("/spells");
       dispatch(setUser(userCred.user));
     } catch (error) {
@@ -1030,6 +1142,23 @@ const signUpFirebase = (email, password, username, history) => {
 };
 const userReducer = (state = {}, action) => {
   switch (action.type) {
+    case DELETE_USER_SPELL:
+      {
+        const filteredSpells = state.info.spellList.filter(spell => spell.name !== action.spell.name);
+        return { ...state,
+          info: { ...state.info,
+            spellList: filteredSpells
+          }
+        };
+      }
+
+    case SET_USER_SPELL:
+      return { ...state,
+        info: { ...state.info,
+          spellList: [...state.info.spellList, action.spell]
+        }
+      };
+
     case SET_USER:
       return state = action.user;
 
