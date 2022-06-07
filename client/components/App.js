@@ -9,6 +9,7 @@ import customSpell from "./spells/customSpell";
 import Login from "./login/login";
 import SignUp from "./login/signup";
 import spellBook from "./spellBook/spellBook";
+import singleSpell from "./spells/singleSpell";
 class App extends Component {
   componentDidMount() {
     const data = this.props.load();
@@ -31,9 +32,14 @@ class App extends Component {
           </div>
           <div>
             {this.props.user.displayName ? (
-              <Link className="nav" to="/my/spell-book">
-                {this.props.user.displayName}
-              </Link>
+              <>
+                <Link className="nav" to="/rooms">
+                  Room
+                </Link>
+                <Link className="nav" to="/my/spell-book">
+                  {this.props.user.displayName}
+                </Link>
+              </>
             ) : (
               <Link className="nav" to="/login">
                 Login
@@ -45,6 +51,7 @@ class App extends Component {
           <Route exact path="/" component={Spells} />
           <Route exact path="/spells" component={Spells} />
           <Route exact path="/my/spell-book" component={spellBook} />
+          <Route exact path="/my/spell-book/:id" component={singleSpell} />
           <Route exact path="/spells/customSpell" component={customSpell} />
           <Route exact path="/spells/create" component={createSpellMonster} />
           <Route exact path="/login" component={Login} />

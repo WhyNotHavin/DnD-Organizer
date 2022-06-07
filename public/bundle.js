@@ -107,6 +107,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_login__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./login/login */ "./client/components/login/login.js");
 /* harmony import */ var _login_signup__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./login/signup */ "./client/components/login/signup.js");
 /* harmony import */ var _spellBook_spellBook__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./spellBook/spellBook */ "./client/components/spellBook/spellBook.js");
+/* harmony import */ var _spells_singleSpell__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./spells/singleSpell */ "./client/components/spells/singleSpell.js");
+
 
 
 
@@ -134,10 +136,13 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     }, "Spells"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       className: "nav",
       to: "/"
-    }, "Monsters")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.user.displayName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    }, "Monsters")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.user.displayName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      className: "nav",
+      to: "/rooms"
+    }, "Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       className: "nav",
       to: "/my/spell-book"
-    }, this.props.user.displayName) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    }, this.props.user.displayName)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       className: "nav",
       to: "/login"
     }, "Login"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
@@ -152,6 +157,10 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       exact: true,
       path: "/my/spell-book",
       component: _spellBook_spellBook__WEBPACK_IMPORTED_MODULE_10__["default"]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      exact: true,
+      path: "/my/spell-book/:id",
+      component: _spells_singleSpell__WEBPACK_IMPORTED_MODULE_11__["default"]
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
       exact: true,
       path: "/spells/customSpell",
@@ -234,31 +243,26 @@ class copyPasteSpellMonster extends react__WEBPACK_IMPORTED_MODULE_0__["Componen
       TEMP: "TEST",
       name: "",
       level: "",
-      class: "",
+      classs: "",
       school: "",
+      sphere: "",
       range: "",
       aoe: "",
+      damage: "",
       castingTime: "",
       duration: "",
       savingThrow: "",
       source: "",
       components: "",
-      p1: "",
-      p2: "",
-      p3: "",
-      p4: "",
-      p5: "",
-      p6: "",
-      p7: "",
-      p8: ""
+      description: [],
+      tempDescription: ""
     };
     this.handleSpellChange = this.handleSpellChange.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
+    this.splitComponents = this.splitComponents.bind(this);
   }
 
-  handleSpellChange() {
-    const array = this.state.TEMP.split(/\n/g) || [];
-    const comp = array[21];
+  splitComponents(comp) {
     let newComp = [];
 
     for (let i = 0; i < comp.length; i++) {
@@ -274,66 +278,124 @@ class copyPasteSpellMonster extends react__WEBPACK_IMPORTED_MODULE_0__["Componen
     }
 
     newComp = newComp.join();
-    this.setState({ ...this.state,
-      source: array[23],
-      components: newComp,
-      savingThrow: array[19],
-      duration: array[17],
-      castingTime: array[15],
-      aoe: array[13],
-      range: array[11],
-      school: array[8],
-      class: array[6],
-      level: array[4],
-      name: array[2]
-    });
-    let num = 1;
+    return newComp;
+  }
 
-    for (let i = 24; i < array.length; i++) {
-      const ele = array[i];
+  handleSpellChange() {
+    const array = this.state.TEMP.split(/\n/g) || [];
+    const finished = new Array(14);
 
-      if (ele) {
-        if (num === 1) {
-          num++;
-          this.setState({
-            p1: ele
-          });
-        } else if (num === 2) {
-          num++;
-          this.setState({
-            p2: ele
-          });
-        } else if (num === 3) {
-          num++;
-          this.setState({
-            p3: ele
-          });
-        } else if (num === 4) {
-          this.setState({
-            p4: ele
-          });
-        } else if (num === 5) {
-          this.setState({
-            p5: ele
-          });
-        } else if (num === 6) {
-          this.setState({
-            p6: ele
-          });
-        } else if (num === 7) {
-          this.setState({
-            p6: ele
-          });
-        } else if (num === 8) {
-          this.setState({
-            p6: ele
-          });
+    for (let i = 0; i < array.length; i++) {
+      // if(array[i] === "VIEW SOURCE") {
+      //   i++
+      //   finished[0] = array[i]
+      // }
+      // if()
+      switch (true) {
+        case array[i]:
+          break;
+
+        case array[i] === "VIEW SOURCE":
+          i++;
+          finished[0] = array[i];
+          break;
+
+        case array[i] === "Spell Level":
+          i++;
+          finished[1] = array[i];
+          break;
+
+        case array[i] === "Class":
+          i++;
+          finished[2] = array[i];
+          break;
+
+        case array[i] === "School":
+          i++;
+          finished[3] = array[i];
+          break;
+
+        case array[i] === "Range":
+          i++;
+          finished[4] = array[i];
+          break;
+
+        case array[i] === "AOE":
+          i++;
+          finished[5] = array[i];
+          break;
+
+        case array[i] === "Casting Time":
+          i++;
+          finished[6] = array[i];
+          break;
+
+        case array[i] === "Duration":
+          i++;
+          finished[7] = array[i];
+          break;
+
+        case array[i] === "Save":
+          i++;
+          finished[8] = array[i];
+          break;
+
+        case array[i] === "Requirements":
+          i++;
+          finished[10] = this.splitComponents(array[i]);
+          break;
+
+        case array[i] === "Damage":
+          i++;
+          finished[12] = array[i];
+          break;
+
+        case array[i] === "Sphere":
+          i++;
+          finished[13] = array[i];
+          break;
+
+        case array[i] === "Source":
+          i++;
+          finished[9] = array[i];
+          i++;
+
+          if (array[i] === "PO: Spells & Magic") {
+            i += 9;
+          }
+
+          finished[11] = array.slice(i);
+          break;
+
+        case array[i] === "PO: Spells & Magic":
+          i;
+          break;
+      }
+
+      for (let i = 0; i < finished.length; i++) {
+        if (finished[i] === undefined) {
+          finished[i] = "";
         }
       }
     }
-  }
 
-  componentDidMount() {}
+    this.setState({ ...this.state,
+      name: finished[0],
+      level: finished[1],
+      classs: finished[2],
+      school: finished[3],
+      range: finished[4],
+      aoe: finished[5],
+      castingTime: finished[6],
+      duration: finished[7],
+      savingThrow: finished[8],
+      source: finished[9],
+      components: finished[10],
+      description: finished[11],
+      damage: finished[12],
+      sphere: finished[13]
+    });
+  }
 
   changeHandler(event) {
     this.setState({
@@ -368,8 +430,8 @@ class copyPasteSpellMonster extends react__WEBPACK_IMPORTED_MODULE_0__["Componen
       className: "copy-item"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "copy-button",
-      onClick: () => this.props.addSpell(dummy)
-    }, "Add to placeholder")));
+      onClick: () => this.props.addSpell(this.state)
+    }, "Add to Spells")));
   }
 
 }
@@ -801,6 +863,84 @@ const mapDispatchToProps = (dispatch, {
 
 /***/ }),
 
+/***/ "./client/components/spells/singleSpell.js":
+/*!*************************************************!*\
+  !*** ./client/components/spells/singleSpell.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+
+const SingleSpell = props => {
+  console.log(props);
+  const spellList = props.state.user.info.spellList || {};
+  let spell = {};
+
+  for (let i = 0; i < spellList.length; i++) {
+    if (spellList[i].name === props.match.params.id) {
+      spell = spellList[i];
+    }
+  }
+
+  console.log(spellList[0]);
+  console.log(spell);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, spell.name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: `/spells/${spell.id}`,
+    className: "spell-header"
+  }, spell.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-school"
+  }, "(", spell.school, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-detail"
+  }, "Level: ", spell.level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-detail"
+  }, "Range: ", spell.range), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-detail"
+  }, "Duration: ", spell.duration), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-detail"
+  }, "Area of Effect: ", spell.aoe), spell.damage ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-detail"
+  }, "Damage: ", spell.damage) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-detail"
+  }, "Class: ", spell.classs), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-detail"
+  }, "Components: ", spell.components), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-detail"
+  }, "Casting Time: ", spell.castingTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-detail"
+  }, "Saving Throw: ", spell.savingThrow), spell.sphere ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-detail"
+  }, "Sphere: ", spell.sphere) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "single-spell-description"
+  }, spell.description.map((description, ind) => {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      key: ind
+    }, description);
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "single-spell-buttons"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Remove"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You don't have this spell!"));
+};
+
+const mapStateToProps = state => ({
+  state
+});
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(SingleSpell));
+
+/***/ }),
+
 /***/ "./client/components/spells/spells.js":
 /*!********************************************!*\
   !*** ./client/components/spells/spells.js ***!
@@ -822,20 +962,16 @@ __webpack_require__.r(__webpack_exports__);
 
 const Spells = props => {
   const [filter, setFilters] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    viewFilters: false,
     class: "",
     school: "",
     components: "",
-    level: ""
+    level: "",
+    sphere: ""
   });
   const [search, setSearch] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     search: ""
   });
-  const spells = props.state.spells || [];
-  let userSpellList = [];
-
-  if (props.state.user.info) {
-    userSpellList = props.state.user.info.spellList;
-  }
 
   const handleChange = evt => {
     setFilters({ ...filter,
@@ -843,19 +979,45 @@ const Spells = props => {
     });
   };
 
+  const handleFilterToggle = () => {
+    setFilters({ ...filter,
+      viewFilters: !filter.viewFilters
+    });
+  };
+
+  let spells = props.state.spells || [];
+  let userSpellList = [];
+
+  if (props.state.user.info) {
+    userSpellList = props.state.user.info.spellList;
+  }
+
+  if (filter.class === "wizard") {
+    spells = spells.filter(spell => spell.classs === "Wizard");
+  } else if (filter.class === "priest") {
+    spells = spells.filter(spell => spell.classs === "Priest");
+  } else {
+    spells = props.state.spells;
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "filter-toggle",
+    onClick: handleFilterToggle
+  }, "Toggle Filters"), filter.viewFilters ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-inner-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Class"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     name: "class",
     value: filter.class,
     onChange: handleChange
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "cleric"
-  }, "Cleric"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "all"
+  }, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: "wizard"
-  }, "Wizard")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "School"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+  }, "Wizard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "priest"
+  }, "Priest")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "School"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     name: "school",
     value: filter.school,
     onChange: handleChange
@@ -875,7 +1037,59 @@ const Spells = props => {
     value: "Divination"
   }, "Divination"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: "Necromancy"
-  }, "Necromancy")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Level"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+  }, "Necromancy")), filter.class === "priest" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Sphere"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    name: "sphere",
+    value: filter.sphere,
+    onChange: handleChange
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "all"
+  }, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "animal"
+  }, "Animal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "astral"
+  }, "Astral"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "chaos"
+  }, "Chaos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "charm"
+  }, "Charm"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "combat"
+  }, "Combat"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "creation"
+  }, "Creation"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "divination"
+  }, "Divination"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "elemental"
+  }, "Elemental"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "gaurdian"
+  }, "Gaurdian"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "healing"
+  }, "Healing"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "law"
+  }, "Law"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "necromantic"
+  }, "Necromantic"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "numbers"
+  }, "Numbers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "plant"
+  }, "Plant"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "protection"
+  }, "Protection"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "summoning"
+  }, "Summoning"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "sun"
+  }, "Sun"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "thought"
+  }, "Thought"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "time"
+  }, "Time"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "travelers"
+  }, "Travelers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "war"
+  }, "War"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "wards"
+  }, "Wards"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "weather"
+  }, "Weather"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Level"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     name: "level",
     value: filter.level,
     onChange: handleChange
@@ -899,7 +1113,7 @@ const Spells = props => {
     value: "9"
   }, "9th level ", "&", " greater"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: "10"
-  }, "10th level"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "10th level"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "total-spells"
   }, "Current Total: ", spells.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     className: "create-new-spell",
@@ -936,7 +1150,9 @@ const Spells = props => {
       className: "spell-detail"
     }, "Duration: ", spell.duration), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "spell-detail"
-    }, "Area of Effect: ", spell.aoe)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Area of Effect: ", spell.aoe), spell.damage ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, "Damage: ", spell.damage) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "spell-detail"
     }, "Class: ", spell.classs), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "spell-detail"
@@ -944,17 +1160,21 @@ const Spells = props => {
       className: "spell-detail"
     }, "Casting Time: ", spell.castingTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "spell-detail"
-    }, "Saving Throw: ", spell.savingThrow))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Saving Throw: ", spell.savingThrow), spell.sphere ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, "Sphere: ", spell.sphere) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "description"
     }, descriptions.map((description, ind) => {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         key: ind
       }, description);
-    })), userSpellList.includes(spell) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-buttons"
+    }, userSpellList.includes(spell) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: () => props.removeSpell(spell, props.state.user.uid)
     }, "Remove from Spell Book")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: () => props.addSpell(spell, props.state.user.uid)
-    }, "Add to Spell Book")));
+    }, "Add to Spell Book"))));
   })));
 };
 
@@ -1077,6 +1297,7 @@ const postFirebaseSpell = (newSpell, history) => {
     try {
       await Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["addDoc"])(Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["collection"])(_server_db_index__WEBPACK_IMPORTED_MODULE_1___default.a, "spell"), newSpell);
       history.push("/spells");
+      dispatch(setSpell(newSpell));
     } catch (e) {
       console.error("Error adding document: ", e);
     }

@@ -31,6 +31,7 @@ export const postFirebaseSpell = (newSpell, history) => {
     try {
       await addDoc(collection(firebaseDB, "spell"), newSpell);
       history.push("/spells");
+      dispatch(setSpell(newSpell));
     } catch (e) {
       console.error("Error adding document: ", e);
     }

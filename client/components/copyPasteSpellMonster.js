@@ -25,31 +25,26 @@ class copyPasteSpellMonster extends Component {
       TEMP: "TEST",
       name: "",
       level: "",
-      class: "",
+      classs: "",
       school: "",
+      sphere: "",
       range: "",
       aoe: "",
+      damage: "",
       castingTime: "",
       duration: "",
       savingThrow: "",
       source: "",
       components: "",
-      p1: "",
-      p2: "",
-      p3: "",
-      p4: "",
-      p5: "",
-      p6: "",
-      p7: "",
-      p8: "",
+      description: [],
+      tempDescription: "",
     };
     this.handleSpellChange = this.handleSpellChange.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
+    this.splitComponents = this.splitComponents.bind(this);
   }
 
-  handleSpellChange() {
-    const array = this.state.TEMP.split(/\n/g) || [];
-    const comp = array[21];
+  splitComponents(comp) {
     let newComp = [];
     for (let i = 0; i < comp.length; i++) {
       const letter = comp[i];
@@ -62,65 +57,108 @@ class copyPasteSpellMonster extends Component {
       }
     }
     newComp = newComp.join();
-    this.setState({
-      ...this.state,
-      source: array[23],
-      components: newComp,
-      savingThrow: array[19],
-      duration: array[17],
-      castingTime: array[15],
-      aoe: array[13],
-      range: array[11],
-      school: array[8],
-      class: array[6],
-      level: array[4],
-      name: array[2],
-    });
+    return newComp;
+  }
 
-    let num = 1;
-    for (let i = 24; i < array.length; i++) {
-      const ele = array[i];
-      if (ele) {
-        if (num === 1) {
-          num++;
-          this.setState({
-            p1: ele,
-          });
-        } else if (num === 2) {
-          num++;
-          this.setState({
-            p2: ele,
-          });
-        } else if (num === 3) {
-          num++;
-          this.setState({
-            p3: ele,
-          });
-        } else if (num === 4) {
-          this.setState({
-            p4: ele,
-          });
-        } else if (num === 5) {
-          this.setState({
-            p5: ele,
-          });
-        } else if (num === 6) {
-          this.setState({
-            p6: ele,
-          });
-        } else if (num === 7) {
-          this.setState({
-            p6: ele,
-          });
-        } else if (num === 8) {
-          this.setState({
-            p6: ele,
-          });
+  handleSpellChange() {
+    const array = this.state.TEMP.split(/\n/g) || [];
+    const finished = new Array(14);
+    for (let i = 0; i < array.length; i++) {
+      // if(array[i] === "VIEW SOURCE") {
+      //   i++
+      //   finished[0] = array[i]
+      // }
+      // if()
+      switch (true) {
+        case array[i]:
+          break;
+        case array[i] === "VIEW SOURCE":
+          i++;
+          finished[0] = array[i];
+          break;
+        case array[i] === "Spell Level":
+          i++;
+          finished[1] = array[i];
+          break;
+        case array[i] === "Class":
+          i++;
+          finished[2] = array[i];
+          break;
+        case array[i] === "School":
+          i++;
+          finished[3] = array[i];
+          break;
+        case array[i] === "Range":
+          i++;
+          finished[4] = array[i];
+          break;
+        case array[i] === "AOE":
+          i++;
+          finished[5] = array[i];
+          break;
+        case array[i] === "Casting Time":
+          i++;
+          finished[6] = array[i];
+          break;
+        case array[i] === "Duration":
+          i++;
+          finished[7] = array[i];
+          break;
+        case array[i] === "Save":
+          i++;
+          finished[8] = array[i];
+          break;
+        case array[i] === "Requirements":
+          i++;
+          finished[10] = this.splitComponents(array[i]);
+          break;
+        case array[i] === "Damage":
+          i++;
+          finished[12] = array[i];
+          break;
+        case array[i] === "Sphere":
+          i++;
+          finished[13] = array[i];
+          break;
+        case array[i] === "Source":
+          i++;
+
+          finished[9] = array[i];
+          i++;
+          if (array[i] === "PO: Spells & Magic") {
+            i += 9;
+          }
+
+          finished[11] = array.slice(i);
+          break;
+        case array[i] === "PO: Spells & Magic":
+          i;
+          break;
+      }
+      for (let i = 0; i < finished.length; i++) {
+        if (finished[i] === undefined) {
+          finished[i] = "";
         }
       }
     }
+    this.setState({
+      ...this.state,
+      name: finished[0],
+      level: finished[1],
+      classs: finished[2],
+      school: finished[3],
+      range: finished[4],
+      aoe: finished[5],
+      castingTime: finished[6],
+      duration: finished[7],
+      savingThrow: finished[8],
+      source: finished[9],
+      components: finished[10],
+      description: finished[11],
+      damage: finished[12],
+      sphere: finished[13],
+    });
   }
-  componentDidMount() {}
   changeHandler(event) {
     this.setState({ TEMP: event.target.value });
     if (this.state.TEMP.length > 30) {
@@ -152,9 +190,9 @@ class copyPasteSpellMonster extends Component {
         <div className="copy-item">
           <button
             className="copy-button"
-            onClick={() => this.props.addSpell(dummy)}
+            onClick={() => this.props.addSpell(this.state)}
           >
-            Add to placeholder
+            Add to Spells
           </button>
         </div>
       </div>
