@@ -21,25 +21,37 @@ function Login(props) {
     props.signIn(form.email, form.password, form.username);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Email: </label>
-      <input
-        className="form-input-email"
-        name="email"
-        onChange={handleChange}
-        value={form.email}
-      />
-      <label>Password: </label>
-      <input
-        className="form-input-password"
-        name="password"
-        onChange={handleChange}
-        value={form.password}
-      />
-      <button className="form-submit" type="submit">
-        Sign In
-      </button>
-      <Link to="/signup">Dont have an account? Sign up here!</Link>
+    <form className="flex-container" onSubmit={handleSubmit}>
+      <div className="login-container">
+        <div className="login-inner-container">
+          <label>Email: </label>
+          <input
+            className="login-input"
+            name="email"
+            onChange={handleChange}
+            value={form.email}
+          />
+        </div>
+        <div className="login-inner-container">
+          <label>Password: </label>
+          <input
+            className="login-input"
+            name="password"
+            onChange={handleChange}
+            value={form.password}
+          />
+        </div>
+        <div className="login-inner-buttons">
+          <button className="login-submit" type="submit">
+            Sign In
+          </button>
+          <div>
+            <Link className="login-submit" to="/signup">
+              Dont have an account? Sign up here!
+            </Link>
+          </div>
+        </div>
+      </div>
     </form>
   );
 }

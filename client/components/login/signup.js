@@ -22,32 +22,46 @@ function SignUp(props) {
     props.signUp(form.email, form.password, form.username);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>User Name: </label>
-      <input
-        className="form-input-username"
-        name="username"
-        onChange={handleChange}
-        value={form.username}
-      />
-      <label>Email: </label>
-      <input
-        className="form-input-email"
-        name="email"
-        onChange={handleChange}
-        value={form.email}
-      />
-      <label>Password: </label>
-      <input
-        className="form-input-password"
-        name="password"
-        onChange={handleChange}
-        value={form.password}
-      />
-      <button className="form-submit" type="submit">
-        Sign Up!
-      </button>
-      <Link to="/login">Already have an account? Sign in here</Link>
+    <form className="flex-container" onSubmit={handleSubmit}>
+      <div className="login-container">
+        <div className="login-inner-container">
+          <label className="login-labels">User Name: </label>
+          <input
+            className="login-input"
+            name="username"
+            onChange={handleChange}
+            value={form.username}
+          />
+        </div>
+        <div className="login-inner-container">
+          <label>Email: </label>
+          <input
+            className="login-input"
+            name="email"
+            onChange={handleChange}
+            value={form.email}
+          />
+        </div>
+        <div className="login-inner-container">
+          <label>Password: </label>
+          <input
+            className="login-input"
+            name="password"
+            onChange={handleChange}
+            value={form.password}
+          />
+        </div>
+        <div className="login-inner-buttons">
+          <button className="login-submit" type="submit">
+            Sign Up!
+          </button>
+          <div>
+            <Link className="login-submit" to="/login">
+              Already have an account? Sign in here
+            </Link>
+          </div>
+        </div>
+      </div>
     </form>
   );
 }

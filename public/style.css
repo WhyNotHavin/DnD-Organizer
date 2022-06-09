@@ -265,6 +265,49 @@ nav {
   font-weight: 800;
   text-decoration: none;
 }
+/* Login/sign in */
+.login-container {
+  margin-top: 6rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  border: #c0c0c0 solid 1px;
+  font-size: 1.5rem;
+}
+.login-inner-container {
+  display: flex;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.login-inner-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-input {
+  width: 100%;
+  background-color: transparent;
+  border: #c0c0c0 solid 1px;
+  color: #c0c0c0;
+  margin-left: 0.5rem;
+}
+.login-submit {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: transparent;
+  color: #c0c0c0;
+  border: #c0c0c0 solid 1px;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
+}
+.login-labels {
+  width: 11rem;
+}
 /* MOBILE vvvv */
 @media (max-width: 800px) {
   .filter-container {
