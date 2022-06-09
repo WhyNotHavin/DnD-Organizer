@@ -76,8 +76,44 @@ main {
   text-decoration: none;
   border-radius: 1rem;
   border: #c0c0c0 solid 1px;
+  height: 2.4rem;
+}
+input[type="checkbox"] {
+  -webkit-appearance: initial;
+  appearance: initial;
+  width: 12px;
+  height: 12px;
+  border: #c0c0c0 solid 1px;
+  background: transparent;
+  position: relative;
+  margin-right: 4px;
 }
 
+input[type="checkbox"]:checked:after {
+  /* Heres your symbol replacement - this is a tick in Unicode. */
+  content: "x";
+  color: #fff;
+  /* The following positions my tick in the center,
+   * but you could just overlay the entire box
+   * with a full after element with a background if you want to */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 1px;
+  /*
+   * If you want to fully change the check appearance, use the following:
+   * content: " ";
+   * width: 100%;
+   * height: 100%;
+   * background: blue;
+   * top: 0;
+   * left: 0;
+   */
+}
 .p {
   margin: 0.5rem;
 }
@@ -308,6 +344,54 @@ nav {
 .login-labels {
   width: 11rem;
 }
+
+/* FILTERS */
+.filter-toggle {
+  background-color: transparent;
+  color: #c0c0c0;
+  border: #c0c0c0 solid 1px;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.filter-top-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  color: #c0c0c0;
+  border: #c0c0c0 solid 0.5px;
+  margin-top: 0.5rem;
+}
+.filter-top-container-detail {
+  display: flex;
+  color: #c0c0c0;
+  padding: 0.5rem;
+  border: #c0c0c0 solid 0.5px;
+}
+.filter-selection {
+  margin-left: 0.5rem;
+  background-color: #202020;
+  color: #c0c0c0;
+}
+.filter-bottom-container {
+  display: flex;
+  border: #c0c0c0 solid 2px;
+}
+.filter-button-schools {
+  display: flex;
+}
+.filter-bottom-sphere {
+  display: flex;
+}
+.filter-botton-school-container {
+  display: flex;
+  flex-direction: column;
+}
+.filter-input-wrapper {
+  display: flex;
+  margin-left: 0.5rem;
+}
+
 /* MOBILE vvvv */
 @media (max-width: 800px) {
   .filter-container {

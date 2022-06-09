@@ -1451,10 +1451,41 @@ const Spells = props => {
   const [filter, setFilters] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     viewFilters: false,
     class: "",
-    school: "",
     components: "",
     level: "",
-    sphere: ""
+    sphere: "",
+    damage: "",
+    Abjuration: "true",
+    Alteration: "true",
+    ConjurationSummoning: "true",
+    EnchantmentCharm: "true",
+    IllusionPhantasm: "true",
+    InvocationEvocation: "true",
+    Divination: "true",
+    Necromancy: "true",
+    animal: "true",
+    astral: "true",
+    chaos: "true",
+    charm: "true",
+    combat: "true",
+    creation: "true",
+    divination: "true",
+    elemental: "true",
+    gaurdian: "true",
+    healing: "true",
+    law: "true",
+    necromantic: "true",
+    numbers: "true",
+    plant: "true",
+    protection: "true",
+    summoning: "true",
+    sun: "true",
+    thought: "true",
+    time: "true",
+    travelers: "true",
+    war: "true",
+    wards: "true",
+    weather: "true"
   });
   const [search, setSearch] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     search: ""
@@ -1487,14 +1518,142 @@ const Spells = props => {
     spells = props.state.spells;
   }
 
+  if (filter.Abjuration === "false") {
+    spells = spells.filter(spell => spell.school !== "Abjuration");
+  }
+
+  if (filter.Alteration === "false") {
+    spells = spells.filter(spell => spell.school !== "Alteration");
+  }
+
+  if (filter.Divination === "false") {
+    spells = spells.filter(spell => spell.school !== "Divination");
+  }
+
+  if (filter.Necromancy === "false") {
+    spells = spells.filter(spell => spell.school !== "Necromancy");
+  }
+
+  if (filter.ConjurationSummoning === "false") {
+    spells = spells.filter(spell => spell.school !== "Conjuration/Summoning");
+  }
+
+  if (filter.EnchantmentCharm === "false") {
+    spells = spells.filter(spell => spell.school !== "Enchantment/Charm");
+  }
+
+  if (filter.IllusionPhantasm === "false") {
+    spells = spells.filter(spell => spell.school !== "Illusion/Phantasm");
+  }
+
+  if (filter.InvocationEvocation === "false") {
+    spells = spells.filter(spell => spell.school !== "Invocation/Evocation");
+  }
+
+  if (filter.astral === "false") {
+    spells = spells.filter(spell => spell.sphere !== "astral");
+  }
+
+  if (filter.chaos === "false") {
+    spells = spells.filter(spell => spell.sphere !== "chaos");
+  }
+
+  if (filter.charm === "false") {
+    spells = spells.filter(spell => spell.sphere !== "charm");
+  }
+
+  if (filter.combat === "false") {
+    spells = spells.filter(spell => spell.sphere !== "combat");
+  }
+
+  if (filter.creation === "false") {
+    spells = spells.filter(spell => spell.sphere !== "creation");
+  }
+
+  if (filter.divination === "false") {
+    spells = spells.filter(spell => spell.sphere !== "divination");
+  }
+
+  if (filter.elemental === "false") {
+    spells = spells.filter(spell => spell.sphere !== "elemental");
+  }
+
+  if (filter.gaurdian === "false") {
+    spells = spells.filter(spell => spell.sphere !== "gaurdian");
+  }
+
+  if (filter.healing === "false") {
+    spells = spells.filter(spell => spell.sphere !== "healing");
+  }
+
+  if (filter.law === "false") {
+    spells = spells.filter(spell => spell.sphere !== "law");
+  }
+
+  if (filter.necromantic === "false") {
+    spells = spells.filter(spell => spell.sphere !== "necromantic");
+  }
+
+  if (filter.numbers === "false") {
+    spells = spells.filter(spell => spell.sphere !== "numbers");
+  }
+
+  if (filter.plant === "false") {
+    spells = spells.filter(spell => spell.sphere !== "plant");
+  }
+
+  if (filter.protection === "false") {
+    spells = spells.filter(spell => spell.sphere !== "protection");
+  }
+
+  if (filter.summoning === "false") {
+    spells = spells.filter(spell => spell.sphere !== "summoning");
+  }
+
+  if (filter.sun === "false") {
+    spells = spells.filter(spell => spell.sphere !== "sun");
+  }
+
+  if (filter.thought === "false") {
+    spells = spells.filter(spell => spell.sphere !== "thought");
+  }
+
+  if (filter.time === "false") {
+    spells = spells.filter(spell => spell.sphere !== "time");
+  }
+
+  if (filter.travelers === "false") {
+    spells = spells.filter(spell => spell.sphere !== "travelers");
+  }
+
+  if (filter.war === "false") {
+    spells = spells.filter(spell => spell.sphere !== "war");
+  }
+
+  if (filter.wards === "false") {
+    spells = spells.filter(spell => spell.sphere !== "wards");
+  }
+
+  if (filter.weather === "false") {
+    spells = spells.filter(spell => spell.sphere !== "weather");
+  }
+
+  console.log(filter);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "filter-toggle",
     onClick: handleFilterToggle
-  }, "Toggle Filters"), filter.viewFilters ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Filter Spells ", filter.viewFilters ? "^" : "v"), filter.viewFilters ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-inner-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Class"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-top-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-top-container-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Class: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "filter-selection",
     name: "class",
     value: filter.class,
     onChange: handleChange
@@ -1504,79 +1663,10 @@ const Spells = props => {
     value: "wizard"
   }, "Wizard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: "priest"
-  }, "Priest")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "School"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    name: "school",
-    value: filter.school,
-    onChange: handleChange
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "Abjuration"
-  }, "Abjuration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "Alteration"
-  }, "Alteration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "Conjuration/Summoning"
-  }, "Conjuration/Summoning"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "Enchantment/Charm"
-  }, "Enchantment/Charm"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "Illusion/Phantasm"
-  }, "Illusion/Phantasm"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "Invocation/Evocation"
-  }, "Invocation/Evocation"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "Divination"
-  }, "Divination"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "Necromancy"
-  }, "Necromancy")), filter.class === "priest" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Sphere"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    name: "sphere",
-    value: filter.sphere,
-    onChange: handleChange
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "all"
-  }, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "animal"
-  }, "Animal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "astral"
-  }, "Astral"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "chaos"
-  }, "Chaos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "charm"
-  }, "Charm"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "combat"
-  }, "Combat"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "creation"
-  }, "Creation"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "divination"
-  }, "Divination"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "elemental"
-  }, "Elemental"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "gaurdian"
-  }, "Gaurdian"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "healing"
-  }, "Healing"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "law"
-  }, "Law"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "necromantic"
-  }, "Necromantic"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "numbers"
-  }, "Numbers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "plant"
-  }, "Plant"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "protection"
-  }, "Protection"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "summoning"
-  }, "Summoning"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "sun"
-  }, "Sun"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "thought"
-  }, "Thought"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "time"
-  }, "Time"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "travelers"
-  }, "Travelers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "war"
-  }, "War"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "wards"
-  }, "Wards"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "weather"
-  }, "Weather"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Level"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+  }, "Priest"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-top-container-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Level: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "filter-selection",
     name: "level",
     value: filter.level,
     onChange: handleChange
@@ -1600,7 +1690,304 @@ const Spells = props => {
     value: "9"
   }, "9th level ", "&", " greater"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: "10"
-  }, "10th level"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "10th level"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-top-container-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Does Damage: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "filter-selection",
+    name: "damage",
+    value: filter.damage,
+    onChange: handleChange
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "either"
+  }, "Either"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "true"
+  }, "True"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "false"
+  }, "False")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-bottom-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-button-schools"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-botton-school-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.Abjuration,
+    className: "checkbox",
+    type: "checkbox",
+    name: "Abjuration",
+    onChange: handleChange // checked={filter.Abjuration}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Abjuration")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.Alteration,
+    className: "checkbox",
+    type: "checkbox",
+    name: "Alteration" // checked={filter.Alteration}
+    ,
+    onChange: handleChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Alteration")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.Divination,
+    className: "checkbox",
+    type: "checkbox",
+    name: "Divination",
+    onChange: handleChange // checked={filter.Divination}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Divination")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.Necromancy,
+    className: "checkbox",
+    type: "checkbox",
+    name: "Necromancy",
+    onChange: handleChange // checked={filter.Necromancy}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Necromancy")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.ConjurationSummoning,
+    className: "checkbox",
+    type: "checkbox",
+    name: "ConjurationSummoning",
+    onChange: handleChange // checked={filter.ConjurationSummoning}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Conjuration/Summoning")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.EnchantmentCharm,
+    className: "checkbox",
+    type: "checkbox",
+    name: "EnchantmentCharm",
+    onChange: handleChange // checked={filter.EnchantmentCharm}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Enchantment/Charm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.IllusionPhantasm,
+    className: "checkbox",
+    type: "checkbox",
+    name: "IllusionPhantasm",
+    onChange: handleChange // checked={filter.IllusionPhantasm}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Illusion/Phantasm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.InvocationEvocation,
+    className: "checkbox",
+    type: "checkbox",
+    name: "InvocationEvocation",
+    onChange: handleChange // checked={filter.InvocationEvocation}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Invocation/Evocation")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-bottom-sphere"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-botton-school-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.astral,
+    className: "checkbox",
+    type: "checkbox",
+    name: "astral",
+    onChange: handleChange // checked={filter.astral}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Astral")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.chaos,
+    className: "checkbox",
+    type: "checkbox",
+    name: "chaos",
+    onChange: handleChange // checked={filter.chaos}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Chaos")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.charm,
+    className: "checkbox",
+    type: "checkbox",
+    name: "charm",
+    onChange: handleChange // checked={filter.charm}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Charm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.combat,
+    className: "checkbox",
+    type: "checkbox",
+    name: "combat",
+    onChange: handleChange // checked={filter.combat}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Combat")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.creation,
+    className: "checkbox",
+    type: "checkbox",
+    name: "creation",
+    onChange: handleChange // checked={filter.creation}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Creation")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.divination,
+    className: "checkbox",
+    type: "checkbox",
+    name: "divination",
+    onChange: handleChange // checked={filter.divination}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Divination")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.elemental,
+    className: "checkbox",
+    type: "checkbox",
+    name: "elemental",
+    onChange: handleChange // checked={filter.elemental}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Elemental")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.gaurdian,
+    className: "checkbox",
+    type: "checkbox",
+    name: "gaurdian",
+    onChange: handleChange // checked={filter.gaurdian}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Gaurdian"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-botton-school-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.healing,
+    className: "checkbox",
+    type: "checkbox",
+    name: "healing",
+    onChange: handleChange // checked={filter.healing}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Healing")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.law,
+    className: "checkbox",
+    type: "checkbox",
+    name: "law",
+    onChange: handleChange // checked={filter.law}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Law")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.necromantic,
+    className: "checkbox",
+    type: "checkbox",
+    name: "necromantic",
+    onChange: handleChange // checked={filter.necromantic}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Necromantic")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.numbers,
+    className: "checkbox",
+    type: "checkbox",
+    name: "numbers",
+    onChange: handleChange // checked={filter.numbers}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Numbers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.plant,
+    className: "checkbox",
+    type: "checkbox",
+    name: "plant",
+    onChange: handleChange // checked={filter.plant}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Plant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.protection,
+    className: "checkbox",
+    type: "checkbox",
+    name: "protection",
+    onChange: handleChange // checked={filter.protection}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Protection")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.summoning,
+    className: "checkbox",
+    type: "checkbox",
+    name: "summoning",
+    onChange: handleChange // checked={filter.summoning}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Summoning")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.sun,
+    className: "checkbox",
+    type: "checkbox",
+    name: "sun",
+    onChange: handleChange // checked={filter.sun}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Sun"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-botton-school-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.thought,
+    className: "checkbox",
+    type: "checkbox",
+    name: "thought",
+    onChange: handleChange // checked={filter.thought}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Thought")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.time,
+    className: "checkbox",
+    type: "checkbox",
+    name: "time",
+    onChange: handleChange // checked={filter.time}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Time")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.travelers,
+    className: "checkbox",
+    type: "checkbox",
+    name: "travelers",
+    onChange: handleChange // checked={filter.travelers}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Travelers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.war,
+    className: "checkbox",
+    type: "checkbox",
+    name: "war",
+    onChange: handleChange // checked={filter.war}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "War")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.wards,
+    className: "checkbox",
+    type: "checkbox",
+    name: "wards",
+    onChange: handleChange // checked={filter.wards}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Wards")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-input-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: !filter.weather,
+    className: "checkbox",
+    type: "checkbox",
+    name: "weather",
+    onChange: handleChange // checked={filter.weather}
+
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Weather")))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "total-spells"
   }, "Current Total: ", spells.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     className: "create-new-spell",
