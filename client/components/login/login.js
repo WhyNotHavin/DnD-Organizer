@@ -6,7 +6,6 @@ import { signIntoFirebase } from "../../store/user";
 
 function Login(props) {
   const [form, setValues] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -23,13 +22,6 @@ function Login(props) {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <label>User Name: </label>
-      <input
-        className="form-input-username"
-        name="username"
-        onChange={handleChange}
-        value={form.username}
-      />
       <label>Email: </label>
       <input
         className="form-input-email"

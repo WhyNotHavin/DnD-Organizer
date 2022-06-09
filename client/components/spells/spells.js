@@ -162,9 +162,17 @@ const Spells = (props) => {
                   <div className="spell-detail">Level: {spell.level}</div>
                   <div className="spell-detail">Range: {spell.range}</div>
                   <div className="spell-detail">Duration: {spell.duration}</div>
-                  <div className="spell-detail">
-                    Area of Effect: {spell.aoe}
-                  </div>
+                  {spell.aoe.length > 20 ? (
+                    <>
+                      <div className="spell-detail">Area of Effect:</div>
+                      <div className="spell-detail">{spell.aoe}</div>
+                    </>
+                  ) : (
+                    <div className="spell-detail">
+                      Area of Effect: {spell.aoe}
+                    </div>
+                  )}
+
                   {spell.damage ? (
                     <div className="spell-detail">Damage: {spell.damage}</div>
                   ) : (

@@ -108,6 +108,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_signup__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./login/signup */ "./client/components/login/signup.js");
 /* harmony import */ var _spellBook_spellBook__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./spellBook/spellBook */ "./client/components/spellBook/spellBook.js");
 /* harmony import */ var _spells_singleSpell__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./spells/singleSpell */ "./client/components/spells/singleSpell.js");
+/* harmony import */ var _rooms_joinRoom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./rooms/joinRoom */ "./client/components/rooms/joinRoom.js");
+/* harmony import */ var _rooms_room__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./rooms/room */ "./client/components/rooms/room.js");
+
+
 
 
 
@@ -136,7 +140,13 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     }, "Spells"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       className: "nav",
       to: "/"
-    }, "Monsters")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.user.displayName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    }, "Monsters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      className: "nav",
+      to: "/temproom"
+    }, "TEMP"), this.props.user.displayName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      className: "nav",
+      to: "/rooms"
+    }, "Room")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.user.displayName ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       className: "nav",
       to: "/rooms"
     }, "Room"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -145,10 +155,18 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     }, this.props.user.displayName)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       className: "nav",
       to: "/login"
-    }, "Login"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    }, "Login"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
       exact: true,
       path: "/",
       component: _spells_spells__WEBPACK_IMPORTED_MODULE_3__["default"]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      exact: true,
+      path: "/rooms",
+      component: _rooms_joinRoom__WEBPACK_IMPORTED_MODULE_12__["default"]
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      exact: true,
+      path: "/temproom",
+      component: _rooms_room__WEBPACK_IMPORTED_MODULE_13__["default"]
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
       exact: true,
       path: "/spells",
@@ -181,7 +199,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       exact: true,
       path: "/spells/copyPasteSpellMonster",
       component: _copyPasteSpellMonster__WEBPACK_IMPORTED_MODULE_6__["default"]
-    })));
+    }))));
   }
 
 }
@@ -505,7 +523,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function Login(props) {
   const [form, setValues] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    username: "",
     email: "",
     password: ""
   });
@@ -523,12 +540,7 @@ function Login(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: handleSubmit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "User Name: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-input-username",
-    name: "username",
-    onChange: handleChange,
-    value: form.username
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: "form-input-email",
     name: "email",
     onChange: handleChange,
@@ -630,6 +642,281 @@ const mapDispatchToProps = (dispatch, {
 
 /***/ }),
 
+/***/ "./client/components/rooms/joinRoom.js":
+/*!*********************************************!*\
+  !*** ./client/components/rooms/joinRoom.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+const JoinRoom = () => {
+  const [room, setRoom] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    room: ""
+  });
+
+  const handleChange = evt => {
+    setRoom({ ...room,
+      [evt.target.name]: evt.target.value
+    });
+  };
+
+  const handleSubmit = evt => {
+    evt.preventDefault(); //Go to new Room
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Create or join a room!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    name: "room",
+    onChange: handleChange,
+    value: room.name
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "submit"
+  }, "Submit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/"
+  }, "Cancel")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (JoinRoom);
+
+/***/ }),
+
+/***/ "./client/components/rooms/room.js":
+/*!*****************************************!*\
+  !*** ./client/components/rooms/room.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _server_db__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../server/db */ "./server/db/index.js");
+/* harmony import */ var _server_db__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_server_db__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+const Room = () => {
+  const [state, setState] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    webcamVideo: null,
+    remoteVideo: null,
+    callInput: "callInput"
+  });
+  const servers = {
+    iceServers: [{
+      urls: ["stun:stun1.l.google.com:19302", "stun:stun2.l.google.com:19302"]
+    }],
+    iceCandidatePoolSize: 10
+  };
+  const pc = new RTCPeerConnection(servers);
+  let localStream = null;
+  let remoteStream = null;
+
+  const webcamButton = async () => {
+    console.log("this ran");
+    localStream = await navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: true
+    }); // Push tracks from local stream to peer connection
+
+    localStream.getTracks().forEach(track => {
+      pc.addTrack(track, localStream);
+    }); // Show stream in HTML video
+
+    let set = await /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef(localStream);
+    setState({ ...state,
+      webcamVideo: localStream
+    });
+    console.log(state);
+  };
+
+  remoteStream = new MediaStream(); // Pull tracks from remote stream, add to video stream
+
+  pc.ontrack = event => {
+    event.streams[0].getTracks().forEach(track => {
+      remoteStream.addTrack(track);
+    });
+    setState({ ...state,
+      remoteVideo: remoteStream
+    });
+  };
+
+  const callButton = async () => {
+    // Reference firebaseDB collections for signaling
+    const callDoc = _server_db__WEBPACK_IMPORTED_MODULE_3___default.a.collection("calls").doc();
+    const offerCandidates = callDoc.collection("offerCandidates");
+    const answerCandidates = callDoc.collection("answerCandidates");
+    setState({ ...state,
+      callInput: callDoc.id
+    }); // Get candidates for caller, save to db
+
+    pc.onicecandidate = event => {
+      event.candidate && offerCandidates.add(event.candidate.toJSON());
+    }; // Create offer
+
+
+    const offerDescription = await pc.createOffer();
+    await pc.setLocalDescription(offerDescription);
+    const offer = {
+      sdp: offerDescription.sdp,
+      type: offerDescription.type
+    };
+    await callDoc.set({
+      offer
+    }); // Listen for remote answer
+
+    callDoc.onSnapshot(snapshot => {
+      const data = snapshot.data();
+
+      if (!pc.currentRemoteDescription && data.answer) {
+        const answerDescription = new RTCSessionDescription(data.answer);
+        pc.setRemoteDescription(answerDescription);
+      }
+    }); // Listen for remote ICE candidates
+
+    answerCandidates.onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(change => {
+        if (change.type === "added") {
+          const candidate = new RTCIceCandidate(change.doc.data());
+          pc.addIceCandidate(candidate);
+        }
+      });
+    });
+  };
+
+  const answerButton = async () => {
+    const callId = state.callInput;
+    const callDoc = _server_db__WEBPACK_IMPORTED_MODULE_3___default.a.collection("calls").doc(callId);
+    const offerCandidates = callDoc.collection("offerCandidates");
+    const answerCandidates = callDoc.collection("answerCandidates");
+
+    pc.onicecandidate = event => {
+      event.candidate && answerCandidates.add(event.candidate.toJSON());
+    }; // Fetch data, then set the offer & answer
+
+
+    const callData = (await callDoc.get()).data();
+    const offerDescription = callData.offer;
+    await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
+    const answerDescription = await pc.createAnswer();
+    await pc.setLocalDescription(answerDescription);
+    const answer = {
+      type: answerDescription.type,
+      sdp: answerDescription.sdp
+    };
+    await callDoc.update({
+      answer
+    }); // Listen to offer candidates
+
+    offerCandidates.onSnapshot(snapshot => {
+      snapshot.docChanges().forEach(change => {
+        console.log(change);
+
+        if (change.type === "added") {
+          let data = change.doc.data();
+          pc.addIceCandidate(new RTCIceCandidate(data));
+        }
+      });
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "1. Start your Webcam"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "videos"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Local Stream"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, state.webcamVideo ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    ref: state.webcamVideo
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    id: "webcamVideo",
+    url: state.webcamVideo,
+    autoPlay: true,
+    playsInline: true
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Remote Stream"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("video", {
+    id: "remoteVideo",
+    autoPlay: true,
+    playsInline: true
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    id: "webcamButton",
+    onClick: webcamButton
+  }, "Start webcam"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "2. Create a new Call"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    id: "callButton",
+    disabled: true,
+    onClick: callButton
+  }, "Create Call (offer)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "3. Join a Call"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Answer the call from a different browser window or device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: state.callInput,
+    onClick: answerButton
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    id: "answerButton",
+    disabled: true
+  }, "Answer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "4. Hangup"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    id: "hangupButton",
+    disabled: true
+  }, "Hangup"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])()(Room)); // const [state, setState] = useState({
+//   webcamVideo: {},
+//   remoteVideo: {},
+//   callButton: { disabled: null },
+//   answerButton: { disabled: null },
+//   webcamButton: { disabled: null },
+// });
+// const servers = {
+//   iceServers: [
+//     {
+//       urls: [
+//         "stun:stun1.l.google.com:19302",
+//         "stun:stun2.l.google.com:19302",
+//       ], // free stun server
+//     },
+//   ],
+//   iceCandidatePoolSize: 10,
+// };
+// // global states
+// const pc = new RTCPeerConnection(servers);
+// let localStream = null;
+// let remoteStream = null;
+// const handleWebcam = async () => {
+//   // setting local stream to the video from our camera
+//   localStream = await navigator.mediaDevices.getUserMedia({
+//     video: true,
+//     audio: true,
+//   });
+//   // initalizing the remote server to the mediastream
+//   remoteStream = new MediaStream();
+//   // Pushing tracks from local stream to peerConnection
+//   localStream.getTracks().forEach((track) => {
+//     pc.addTrack(track, localStream);
+//   });
+//   pc.ontrack = (event) => {
+//     event.streams[0].getTracks((track) => {
+//       remoteStream.addTrack(track);
+//     });
+//   };
+//   // displaying the video data from the stream to the webpage
+//   setState({
+//     ...state,
+//     webcamVideo: localStream,
+//     remoteVideo: remoteStream,
+//     callButton: { disabled: false },
+//     answerButton: { disabled: false },
+//     webcamButton: { disabled: true },
+//   });
+// };
+
+/***/ }),
+
 /***/ "./client/components/spellBook/spellBook.js":
 /*!**************************************************!*\
   !*** ./client/components/spellBook/spellBook.js ***!
@@ -650,69 +937,192 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const SpellBook = props => {
+  const [filter, setFilters] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    viewFilters: false,
+    class: "",
+    school: "",
+    components: "",
+    level: "",
+    sphere: ""
+  });
+  const [search, setSearch] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    search: ""
+  });
+
+  const handleChange = evt => {
+    setFilters({ ...filter,
+      [evt.target.name]: evt.target.value
+    });
+  };
+
+  const handleFilterToggle = () => {
+    setFilters({ ...filter,
+      viewFilters: !filter.viewFilters
+    });
+  };
+
+  const handleSpellLevel = level => {
+    level = String(level);
+
+    if (level[level.length - 1] === "1") {
+      return level + "st lvl";
+    } else if (level[level.length - 1] === "2") {
+      return level + "nd lvl";
+    } else if (level === "3") {
+      return level + "rd lvl";
+    } else {
+      return level + "th lvl";
+    }
+  };
+
+  let spells = props.state.spells || [];
   let userSpellList = [];
 
   if (props.state.user.info) {
     userSpellList = props.state.user.info.spellList;
   }
 
+  if (filter.class === "wizard") {
+    spells = spells.filter(spell => spell.classs === "Wizard");
+  } else if (filter.class === "priest") {
+    spells = spells.filter(spell => spell.classs === "Priest");
+  } else {
+    spells = props.state.spells;
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "FILTER PLACEHOLDER"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    className: "create-new-spell",
-    params: {
-      testvalue: "hello"
-    },
-    to: "/spells/create"
-  }, "Prepared Spells")), userSpellList[0] ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "main"
-  }, userSpellList.map(spell => {
-    let descriptions = [];
-
-    if (spell.description) {
-      descriptions = spell.description;
-    }
-
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "filter-toggle",
+    onClick: handleFilterToggle
+  }, "Toggle Filters"), filter.viewFilters ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-inner-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Class"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    name: "class",
+    value: filter.class,
+    onChange: handleChange
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "all"
+  }, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "wizard"
+  }, "Wizard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "priest"
+  }, "Priest")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "School"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    name: "school",
+    value: filter.school,
+    onChange: handleChange
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Abjuration"
+  }, "Abjuration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Alteration"
+  }, "Alteration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Conjuration/Summoning"
+  }, "Conjuration/Summoning"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Enchantment/Charm"
+  }, "Enchantment/Charm"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Illusion/Phantasm"
+  }, "Illusion/Phantasm"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Invocation/Evocation"
+  }, "Invocation/Evocation"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Divination"
+  }, "Divination"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Necromancy"
+  }, "Necromancy")), filter.class === "priest" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Sphere"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    name: "sphere",
+    value: filter.sphere,
+    onChange: handleChange
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "all"
+  }, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "animal"
+  }, "Animal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "astral"
+  }, "Astral"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "chaos"
+  }, "Chaos"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "charm"
+  }, "Charm"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "combat"
+  }, "Combat"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "creation"
+  }, "Creation"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "divination"
+  }, "Divination"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "elemental"
+  }, "Elemental"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "gaurdian"
+  }, "Gaurdian"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "healing"
+  }, "Healing"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "law"
+  }, "Law"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "necromantic"
+  }, "Necromantic"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "numbers"
+  }, "Numbers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "plant"
+  }, "Plant"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "protection"
+  }, "Protection"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "summoning"
+  }, "Summoning"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "sun"
+  }, "Sun"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "thought"
+  }, "Thought"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "time"
+  }, "Time"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "travelers"
+  }, "Travelers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "war"
+  }, "War"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "wards"
+  }, "Wards"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "weather"
+  }, "Weather"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Level"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    name: "level",
+    value: filter.level,
+    onChange: handleChange
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "1"
+  }, "1st level ", "&", " greater"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "2"
+  }, "2nd level ", "&", " greater"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "3"
+  }, "3rd level ", "&", " greater"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "4"
+  }, "4th level ", "&", " greater"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "5"
+  }, "5th level ", "&", " greater"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "6"
+  }, "6th level ", "&", " greater"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "7"
+  }, "7th level ", "&", " greater"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "8"
+  }, "8th level ", "&", " greater"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "9"
+  }, "9th level ", "&", " greater"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "10"
+  }, "10th level"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Logout"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/"
+  }, "Prepared"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spell-book-container"
+  }, console.log(userSpellList), userSpellList.map(spell => {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      key: spell.id,
-      className: "spell-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "spell-header"
+      className: "spell-book-inner-container"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-      to: `/spells/${spell.id}`,
-      className: "spell-header"
-    }, spell.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "spell-school"
-    }, "(", spell.school, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "details-container"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "spell-detail"
-    }, "Level: ", spell.level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "spell-detail"
-    }, "Range: ", spell.range), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "spell-detail"
-    }, "Duration: ", spell.duration), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "spell-detail"
-    }, "Area of Effect: ", spell.aoe)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "spell-detail"
-    }, "Class: ", spell.classs), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "spell-detail"
-    }, "Components: ", spell.components), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "spell-detail"
-    }, "Casting Time: ", spell.castingTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "spell-detail"
-    }, "Saving Throw: ", spell.savingThrow))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "description"
-    }, descriptions.map((description, ind) => {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        key: ind
-      }, description);
-    })), userSpellList.includes(spell) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      onClick: () => props.removeSpell(spell, props.state.user.uid)
-    }, "Remove from Spell Book")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-      onClick: () => props.addSpell(spell, props.state.user.uid)
-    }, "Add to Spell Book")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Prepare Spell")));
-  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You have no spells! Go learn some quick~!"));
+      to: "/my/spell-book/" + spell.name,
+      className: "spell-book-inner-container-details"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, spell.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-book-inner-container-details-count"
+    }, handleSpellLevel(spell.level))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-book-inner-container-details"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "spell-book-inner-container-details"
+    }, "Prepare")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-book-inner-container-details-count"
+    }, "x0")));
+  })));
 };
 
 const mapStateToProps = state => ({
@@ -760,6 +1170,7 @@ function CreateSpell(props) {
     aoe: "",
     savingThrow: "",
     source: "",
+    sphere: "",
     description: [],
     tempDescription: ""
   });
@@ -783,74 +1194,126 @@ function CreateSpell(props) {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    className: "flex-container",
     onSubmit: handleSubmit
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-input-name",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-header"
+  }, "Create a new spell!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-container-details"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-inner-container-details"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Name: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-custom-spell",
     name: "name",
     onChange: handleChange,
     value: form.name
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "School: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-input-school",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "School: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-custom-spell",
     name: "school",
     onChange: handleChange,
     value: form.school
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Level: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Sphere: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-custom-spell",
+    name: "sphere",
+    onChange: handleChange,
+    value: form.sphere
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Level: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "number",
-    className: "form-input-level",
+    className: "form-input-custom-spell",
     name: "level",
     onChange: handleChange,
     value: form.level
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Range: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-input-range",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Range: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-custom-spell",
     name: "range",
     onChange: handleChange,
     value: form.range
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Duration: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-input-duration",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Duration: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-custom-spell",
     name: "duration",
     onChange: handleChange,
     value: form.duration
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "AoE: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-input-aoe",
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-inner-container-details"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "AoE: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-custom-spell",
     name: "aoe",
     onChange: handleChange,
     value: form.aoe
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Class: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-input-classs",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Class: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-custom-spell",
     name: "classs",
     onChange: handleChange,
     value: form.classs
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Components: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-input-components",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Components: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-custom-spell",
     name: "components",
     onChange: handleChange,
     value: form.components
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Casting Time: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-input-castingTime",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "custom-spell-labels"
+  }, "Casting Time: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-custom-spell",
     name: "castingTime",
     onChange: handleChange,
     value: form.castingTime
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Saving Throw: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "form-input-savingThrow",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "custom-spell-labels"
+  }, "Saving Throw: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-custom-spell",
     name: "savingThrow",
     onChange: handleChange,
     value: form.savingThrow
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-detail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Damage: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "form-input-custom-spell",
+    name: "damage",
+    onChange: handleChange,
+    value: form.damage
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-inner-container-details"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    className: "custom-spell-description",
     defaultValue: form.tempDescription,
     onChange: handleChange,
-    placeholder: "tempDescription",
+    placeholder: "Spell Description",
     name: "tempDescription",
     rows: "20",
-    cols: "80"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-inner-container"
+    cols: "100"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-spell-inner-container-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "form-submit",
+    className: "custom-spell-submit",
     type: "submit"
-  }, "Submit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    className: "form-cancel",
+  }, "Submit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    className: "custom-spell-cancel",
     to: "/"
-  }, "Cancel"))));
+  }, "Cancel")))));
 }
 
 const mapDispatchToProps = (dispatch, {
@@ -1148,7 +1611,11 @@ const Spells = props => {
       className: "spell-detail"
     }, "Range: ", spell.range), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "spell-detail"
-    }, "Duration: ", spell.duration), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, "Duration: ", spell.duration), spell.aoe.length > 20 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, "Area of Effect:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "spell-detail"
+    }, spell.aoe)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "spell-detail"
     }, "Area of Effect: ", spell.aoe), spell.damage ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "spell-detail"
@@ -1282,7 +1749,6 @@ const setSpell = spell => {
 const fetchFirebaseData = () => {
   return async dispatch => {
     const querySnapshot = await Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["getDocs"])(Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["collection"])(_server_db_index__WEBPACK_IMPORTED_MODULE_1___default.a, "spell"));
-    console.log("this ran?");
     const arr = [];
     querySnapshot.forEach(async doc => {
       const spell = doc.data();
@@ -1295,9 +1761,23 @@ const fetchFirebaseData = () => {
 const postFirebaseSpell = (newSpell, history) => {
   return async dispatch => {
     try {
-      await Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["addDoc"])(Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["collection"])(_server_db_index__WEBPACK_IMPORTED_MODULE_1___default.a, "spell"), newSpell);
-      history.push("/spells");
-      dispatch(setSpell(newSpell));
+      const querySnapshot = await Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["getDocs"])(Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["collection"])(_server_db_index__WEBPACK_IMPORTED_MODULE_1___default.a, "spell"));
+      let alreadyHave = false;
+      querySnapshot.forEach(async doc => {
+        const spell = doc.data();
+
+        if (spell.name === newSpell.name) {
+          alreadyHave = true;
+        }
+      });
+
+      if (alreadyHave) {
+        throw Error;
+      } else {
+        await Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["addDoc"])(Object(firebase_firestore__WEBPACK_IMPORTED_MODULE_0__["collection"])(_server_db_index__WEBPACK_IMPORTED_MODULE_1___default.a, "spell"), newSpell);
+        history.push("/spells");
+        dispatch(setSpell(newSpell));
+      }
     } catch (e) {
       console.error("Error adding document: ", e);
     }

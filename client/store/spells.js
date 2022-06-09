@@ -15,7 +15,6 @@ export const setSpell = (spell) => {
 export const fetchFirebaseData = () => {
   return async (dispatch) => {
     const querySnapshot = await getDocs(collection(firebaseDB, "spell"));
-    console.log("this ran?");
     const arr = [];
     querySnapshot.forEach(async (doc) => {
       const spell = doc.data();
@@ -29,9 +28,21 @@ export const fetchFirebaseData = () => {
 export const postFirebaseSpell = (newSpell, history) => {
   return async (dispatch) => {
     try {
-      await addDoc(collection(firebaseDB, "spell"), newSpell);
-      history.push("/spells");
-      dispatch(setSpell(newSpell));
+      const querySnapshot = await getDocs(collection(firebaseDB, "spell"));
+      let alreadyHave = false;
+      querySnapshot.forEach(async (doc) => {
+        const spell = doc.data();
+        if (spell.name === newSpell.name) {
+          alreadyHave = true;
+        }
+      });
+      if (alreadyHave) {
+        throw Error;
+      } else {
+        await addDoc(collection(firebaseDB, "spell"), newSpell);
+        history.push("/spells");
+        dispatch(setSpell(newSpell));
+      }
     } catch (e) {
       console.error("Error adding document: ", e);
     }
