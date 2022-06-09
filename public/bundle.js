@@ -1455,45 +1455,55 @@ const Spells = props => {
     level: "",
     sphere: "",
     damage: "",
-    Abjuration: "true",
-    Alteration: "true",
-    ConjurationSummoning: "true",
-    EnchantmentCharm: "true",
-    IllusionPhantasm: "true",
-    InvocationEvocation: "true",
-    Divination: "true",
-    Necromancy: "true",
-    animal: "true",
-    astral: "true",
-    chaos: "true",
-    charm: "true",
-    combat: "true",
-    creation: "true",
-    divination: "true",
-    elemental: "true",
-    gaurdian: "true",
-    healing: "true",
-    law: "true",
-    necromantic: "true",
-    numbers: "true",
-    plant: "true",
-    protection: "true",
-    summoning: "true",
-    sun: "true",
-    thought: "true",
-    time: "true",
-    travelers: "true",
-    war: "true",
-    wards: "true",
-    weather: "true"
+    Abjuration: true,
+    Alteration: true,
+    ConjurationSummoning: true,
+    EnchantmentCharm: true,
+    IllusionPhantasm: true,
+    InvocationEvocation: true,
+    Divination: true,
+    Necromancy: true,
+    animal: true,
+    astral: true,
+    chaos: true,
+    charm: true,
+    combat: true,
+    creation: true,
+    divination: true,
+    elemental: true,
+    gaurdian: true,
+    healing: true,
+    law: true,
+    necromantic: true,
+    numbers: true,
+    plant: true,
+    protection: true,
+    summoning: true,
+    sun: true,
+    thought: true,
+    time: true,
+    travelers: true,
+    war: true,
+    wards: true,
+    weather: true
   });
   const [search, setSearch] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     search: ""
   });
 
   const handleChange = evt => {
+    let value = evt.target.value;
+
+    if (value === "true") {
+      value = true;
+    }
+
+    if (value === "false") {
+      value = false;
+    }
+
     setFilters({ ...filter,
-      [evt.target.name]: evt.target.value
+      [evt.target.name]: value
     });
   };
 
@@ -1514,6 +1524,14 @@ const Spells = props => {
     spells = spells.filter(spell => spell.classs === "Wizard");
   } else if (filter.class === "priest") {
     spells = spells.filter(spell => spell.classs === "Priest");
+  } else {
+    spells = props.state.spells;
+  }
+
+  if (filter.damage === true) {
+    spells = spells.filter(spell => spell.damage !== "");
+  } else if (!filter.damage) {
+    spells = spells.filter(spell => spell.damage === "");
   } else {
     spells = props.state.spells;
   }
@@ -1716,16 +1734,16 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "Abjuration",
-    onChange: handleChange // checked={filter.Abjuration}
-
+    onChange: handleChange,
+    checked: filter.Abjuration
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Abjuration")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: !filter.Alteration,
     className: "checkbox",
     type: "checkbox",
-    name: "Alteration" // checked={filter.Alteration}
-    ,
+    name: "Alteration",
+    checked: filter.Alteration,
     onChange: handleChange
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Alteration")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
@@ -1734,8 +1752,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "Divination",
-    onChange: handleChange // checked={filter.Divination}
-
+    onChange: handleChange,
+    checked: filter.Divination
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Divination")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1743,8 +1761,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "Necromancy",
-    onChange: handleChange // checked={filter.Necromancy}
-
+    onChange: handleChange,
+    checked: filter.Necromancy
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Necromancy")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1752,8 +1770,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "ConjurationSummoning",
-    onChange: handleChange // checked={filter.ConjurationSummoning}
-
+    onChange: handleChange,
+    checked: filter.ConjurationSummoning
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Conjuration/Summoning")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1761,8 +1779,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "EnchantmentCharm",
-    onChange: handleChange // checked={filter.EnchantmentCharm}
-
+    onChange: handleChange,
+    checked: filter.EnchantmentCharm
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Enchantment/Charm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1770,8 +1788,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "IllusionPhantasm",
-    onChange: handleChange // checked={filter.IllusionPhantasm}
-
+    onChange: handleChange,
+    checked: filter.IllusionPhantasm
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Illusion/Phantasm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1779,8 +1797,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "InvocationEvocation",
-    onChange: handleChange // checked={filter.InvocationEvocation}
-
+    onChange: handleChange,
+    checked: filter.InvocationEvocation
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Invocation/Evocation")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-bottom-sphere"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1792,8 +1810,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "astral",
-    onChange: handleChange // checked={filter.astral}
-
+    onChange: handleChange,
+    checked: filter.astral
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Astral")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1801,8 +1819,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "chaos",
-    onChange: handleChange // checked={filter.chaos}
-
+    onChange: handleChange,
+    checked: filter.chaos
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Chaos")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1810,8 +1828,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "charm",
-    onChange: handleChange // checked={filter.charm}
-
+    onChange: handleChange,
+    checked: filter.charm
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Charm")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1819,8 +1837,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "combat",
-    onChange: handleChange // checked={filter.combat}
-
+    onChange: handleChange,
+    checked: filter.combat
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Combat")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1828,8 +1846,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "creation",
-    onChange: handleChange // checked={filter.creation}
-
+    onChange: handleChange,
+    checked: filter.creation
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Creation")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1837,8 +1855,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "divination",
-    onChange: handleChange // checked={filter.divination}
-
+    onChange: handleChange,
+    checked: filter.divination
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Divination")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1846,8 +1864,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "elemental",
-    onChange: handleChange // checked={filter.elemental}
-
+    onChange: handleChange,
+    checked: filter.elemental
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Elemental")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1855,8 +1873,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "gaurdian",
-    onChange: handleChange // checked={filter.gaurdian}
-
+    onChange: handleChange,
+    checked: filter.gaurdian
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Gaurdian"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-botton-school-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1866,8 +1884,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "healing",
-    onChange: handleChange // checked={filter.healing}
-
+    onChange: handleChange,
+    checked: filter.healing
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Healing")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1875,8 +1893,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "law",
-    onChange: handleChange // checked={filter.law}
-
+    onChange: handleChange,
+    checked: filter.law
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Law")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1884,8 +1902,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "necromantic",
-    onChange: handleChange // checked={filter.necromantic}
-
+    onChange: handleChange,
+    checked: filter.necromantic
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Necromantic")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1893,8 +1911,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "numbers",
-    onChange: handleChange // checked={filter.numbers}
-
+    onChange: handleChange,
+    checked: filter.numbers
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Numbers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1902,8 +1920,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "plant",
-    onChange: handleChange // checked={filter.plant}
-
+    onChange: handleChange,
+    checked: filter.plant
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Plant")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1911,8 +1929,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "protection",
-    onChange: handleChange // checked={filter.protection}
-
+    onChange: handleChange,
+    checked: filter.protection
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Protection")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1920,8 +1938,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "summoning",
-    onChange: handleChange // checked={filter.summoning}
-
+    onChange: handleChange,
+    checked: filter.summoning
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Summoning")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1929,8 +1947,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "sun",
-    onChange: handleChange // checked={filter.sun}
-
+    onChange: handleChange,
+    checked: filter.sun
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Sun"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-botton-school-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1940,8 +1958,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "thought",
-    onChange: handleChange // checked={filter.thought}
-
+    onChange: handleChange,
+    checked: filter.thought
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Thought")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1949,8 +1967,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "time",
-    onChange: handleChange // checked={filter.time}
-
+    onChange: handleChange,
+    checked: filter.time
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Time")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1958,8 +1976,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "travelers",
-    onChange: handleChange // checked={filter.travelers}
-
+    onChange: handleChange,
+    checked: filter.travelers
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Travelers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1967,8 +1985,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "war",
-    onChange: handleChange // checked={filter.war}
-
+    onChange: handleChange,
+    checked: filter.war
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "War")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1976,8 +1994,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "wards",
-    onChange: handleChange // checked={filter.wards}
-
+    onChange: handleChange,
+    checked: filter.wards
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Wards")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filter-input-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1985,8 +2003,8 @@ const Spells = props => {
     className: "checkbox",
     type: "checkbox",
     name: "weather",
-    onChange: handleChange // checked={filter.weather}
-
+    onChange: handleChange,
+    checked: filter.weather
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Weather")))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "total-spells"
   }, "Current Total: ", spells.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {

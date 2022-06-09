@@ -11,46 +11,53 @@ const Spells = (props) => {
     level: "",
     sphere: "",
     damage: "",
-    Abjuration: "true",
-    Alteration: "true",
-    ConjurationSummoning: "true",
-    EnchantmentCharm: "true",
-    IllusionPhantasm: "true",
-    InvocationEvocation: "true",
-    Divination: "true",
-    Necromancy: "true",
-    animal: "true",
-    astral: "true",
-    chaos: "true",
-    charm: "true",
-    combat: "true",
-    creation: "true",
-    divination: "true",
-    elemental: "true",
-    gaurdian: "true",
-    healing: "true",
-    law: "true",
-    necromantic: "true",
-    numbers: "true",
-    plant: "true",
-    protection: "true",
-    summoning: "true",
-    sun: "true",
-    thought: "true",
-    time: "true",
-    travelers: "true",
-    war: "true",
-    wards: "true",
-    weather: "true",
+    Abjuration: true,
+    Alteration: true,
+    ConjurationSummoning: true,
+    EnchantmentCharm: true,
+    IllusionPhantasm: true,
+    InvocationEvocation: true,
+    Divination: true,
+    Necromancy: true,
+    animal: true,
+    astral: true,
+    chaos: true,
+    charm: true,
+    combat: true,
+    creation: true,
+    divination: true,
+    elemental: true,
+    gaurdian: true,
+    healing: true,
+    law: true,
+    necromantic: true,
+    numbers: true,
+    plant: true,
+    protection: true,
+    summoning: true,
+    sun: true,
+    thought: true,
+    time: true,
+    travelers: true,
+    war: true,
+    wards: true,
+    weather: true,
   });
   const [search, setSearch] = useState({
     search: "",
   });
 
   const handleChange = (evt) => {
+    let value = evt.target.value;
+    if (value === "true") {
+      value = true;
+    }
+    if (value === "false") {
+      value = false;
+    }
     setFilters({
       ...filter,
-      [evt.target.name]: evt.target.value,
+      [evt.target.name]: value,
     });
   };
   const handleFilterToggle = () => {
@@ -69,6 +76,13 @@ const Spells = (props) => {
     spells = spells.filter((spell) => spell.classs === "Wizard");
   } else if (filter.class === "priest") {
     spells = spells.filter((spell) => spell.classs === "Priest");
+  } else {
+    spells = props.state.spells;
+  }
+  if (filter.damage === true) {
+    spells = spells.filter((spell) => spell.damage !== "");
+  } else if (!filter.damage) {
+    spells = spells.filter((spell) => spell.damage === "");
   } else {
     spells = props.state.spells;
   }
@@ -231,7 +245,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"Abjuration"}
                         onChange={handleChange}
-                        // checked={filter.Abjuration}
+                        checked={filter.Abjuration}
                       />
                       <label>Abjuration</label>
                     </div>
@@ -241,7 +255,7 @@ const Spells = (props) => {
                         className="checkbox"
                         type="checkbox"
                         name={"Alteration"}
-                        // checked={filter.Alteration}
+                        checked={filter.Alteration}
                         onChange={handleChange}
                       />
                       <label>Alteration</label>
@@ -253,7 +267,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"Divination"}
                         onChange={handleChange}
-                        // checked={filter.Divination}
+                        checked={filter.Divination}
                       />
                       <label>Divination</label>
                     </div>
@@ -264,7 +278,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"Necromancy"}
                         onChange={handleChange}
-                        // checked={filter.Necromancy}
+                        checked={filter.Necromancy}
                       />
                       <label>Necromancy</label>
                     </div>
@@ -275,7 +289,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"ConjurationSummoning"}
                         onChange={handleChange}
-                        // checked={filter.ConjurationSummoning}
+                        checked={filter.ConjurationSummoning}
                       />
                       <label>Conjuration/Summoning</label>
                     </div>
@@ -286,7 +300,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"EnchantmentCharm"}
                         onChange={handleChange}
-                        // checked={filter.EnchantmentCharm}
+                        checked={filter.EnchantmentCharm}
                       />
                       <label>Enchantment/Charm</label>
                     </div>
@@ -297,7 +311,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"IllusionPhantasm"}
                         onChange={handleChange}
-                        // checked={filter.IllusionPhantasm}
+                        checked={filter.IllusionPhantasm}
                       />
                       <label>Illusion/Phantasm</label>
                     </div>
@@ -308,7 +322,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"InvocationEvocation"}
                         onChange={handleChange}
-                        // checked={filter.InvocationEvocation}
+                        checked={filter.InvocationEvocation}
                       />
                       <label>Invocation/Evocation</label>
                     </div>
@@ -323,7 +337,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"astral"}
                         onChange={handleChange}
-                        // checked={filter.astral}
+                        checked={filter.astral}
                       />
                       <label>Astral</label>
                     </div>
@@ -334,7 +348,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"chaos"}
                         onChange={handleChange}
-                        // checked={filter.chaos}
+                        checked={filter.chaos}
                       />
                       <label>Chaos</label>
                     </div>
@@ -345,7 +359,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"charm"}
                         onChange={handleChange}
-                        // checked={filter.charm}
+                        checked={filter.charm}
                       />
                       <label>Charm</label>
                     </div>
@@ -356,7 +370,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"combat"}
                         onChange={handleChange}
-                        // checked={filter.combat}
+                        checked={filter.combat}
                       />
                       <label>Combat</label>
                     </div>
@@ -367,7 +381,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"creation"}
                         onChange={handleChange}
-                        // checked={filter.creation}
+                        checked={filter.creation}
                       />
                       <label>Creation</label>
                     </div>
@@ -378,7 +392,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"divination"}
                         onChange={handleChange}
-                        // checked={filter.divination}
+                        checked={filter.divination}
                       />
                       <label>Divination</label>
                     </div>
@@ -389,7 +403,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"elemental"}
                         onChange={handleChange}
-                        // checked={filter.elemental}
+                        checked={filter.elemental}
                       />
                       <label>Elemental</label>
                     </div>
@@ -400,7 +414,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"gaurdian"}
                         onChange={handleChange}
-                        // checked={filter.gaurdian}
+                        checked={filter.gaurdian}
                       />
                       <label>Gaurdian</label>
                     </div>
@@ -413,7 +427,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"healing"}
                         onChange={handleChange}
-                        // checked={filter.healing}
+                        checked={filter.healing}
                       />
                       <label>Healing</label>
                     </div>
@@ -424,7 +438,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"law"}
                         onChange={handleChange}
-                        // checked={filter.law}
+                        checked={filter.law}
                       />
                       <label>Law</label>
                     </div>
@@ -435,7 +449,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"necromantic"}
                         onChange={handleChange}
-                        // checked={filter.necromantic}
+                        checked={filter.necromantic}
                       />
                       <label>Necromantic</label>
                     </div>
@@ -446,7 +460,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"numbers"}
                         onChange={handleChange}
-                        // checked={filter.numbers}
+                        checked={filter.numbers}
                       />
                       <label>Numbers</label>
                     </div>
@@ -457,7 +471,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"plant"}
                         onChange={handleChange}
-                        // checked={filter.plant}
+                        checked={filter.plant}
                       />
                       <label>Plant</label>
                     </div>
@@ -468,7 +482,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"protection"}
                         onChange={handleChange}
-                        // checked={filter.protection}
+                        checked={filter.protection}
                       />
                       <label>Protection</label>
                     </div>
@@ -479,7 +493,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"summoning"}
                         onChange={handleChange}
-                        // checked={filter.summoning}
+                        checked={filter.summoning}
                       />
                       <label>Summoning</label>
                     </div>
@@ -490,7 +504,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"sun"}
                         onChange={handleChange}
-                        // checked={filter.sun}
+                        checked={filter.sun}
                       />
                       <label>Sun</label>
                     </div>
@@ -503,7 +517,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"thought"}
                         onChange={handleChange}
-                        // checked={filter.thought}
+                        checked={filter.thought}
                       />
                       <label>Thought</label>
                     </div>
@@ -514,7 +528,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"time"}
                         onChange={handleChange}
-                        // checked={filter.time}
+                        checked={filter.time}
                       />
                       <label>Time</label>
                     </div>
@@ -525,7 +539,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"travelers"}
                         onChange={handleChange}
-                        // checked={filter.travelers}
+                        checked={filter.travelers}
                       />
                       <label>Travelers</label>
                     </div>
@@ -536,7 +550,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"war"}
                         onChange={handleChange}
-                        // checked={filter.war}
+                        checked={filter.war}
                       />
                       <label>War</label>
                     </div>
@@ -547,7 +561,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"wards"}
                         onChange={handleChange}
-                        // checked={filter.wards}
+                        checked={filter.wards}
                       />
                       <label>Wards</label>
                     </div>
@@ -558,7 +572,7 @@ const Spells = (props) => {
                         type="checkbox"
                         name={"weather"}
                         onChange={handleChange}
-                        // checked={filter.weather}
+                        checked={filter.weather}
                       />
                       <label>Weather</label>
                     </div>
